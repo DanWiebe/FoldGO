@@ -12,7 +12,7 @@
 #' plot(up_fs, down_fs)
 setMethod(f = "plot",
           signature = "FoldSpecTest",
-          definition = function(x, y){
+          definition = function(x, y, x_text_size = 10){
             up_obj <- x
             down_obj <- y
             wholeintname <- getWholeIntName(up_obj)
@@ -23,7 +23,7 @@ setMethod(f = "plot",
                                             down_obj@fstable,
                                             down_obj@nfstable,
                                             wholeintname)
-            plot(fold_spec_chart(fs_data, x_labs))
+            plot(fold_spec_chart(fs_data, x_labs, x_text_size = x_text_size))
           }
 )
 
@@ -143,7 +143,7 @@ fold_spec_chart_data <-
 #' @return fold specificity rectangle plot as ggplot object
 #' @importFrom ggplot2 ggplot geom_rect scale_x_continuous scale_y_continuous theme geom_hline geom_text coord_flip aes element_blank element_text
 #'
-fold_spec_chart <- function(data, interval_labels, x_text_size = 10) {
+fold_spec_chart <- function(data, interval_labels, x_text_size) {
 
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
     stop("ggplot2 package needed for this function to work. Please install it.",
