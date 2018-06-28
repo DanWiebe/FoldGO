@@ -81,7 +81,7 @@ setMethod(
 #' @param GAFReader - object of GAFReader class
 #'
 #' @return - list with GO term id's as keys and Gene ID's as values
-#'
+#' @export
 #' @examples
 #' gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
 #' gaf <- GAFReader(file = gafpath)
