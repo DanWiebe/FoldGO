@@ -5,7 +5,7 @@
 \alias{plot,FoldSpecTest,ANY-method}
 \title{Fold-specificity chart plotting}
 \usage{
-\S4method{plot}{FoldSpecTest,ANY}(x, y)
+\S4method{plot}{FoldSpecTest,ANY}(x, y, x_text_size = 10)
 }
 \arguments{
 \item{FoldSpecTest}{- object of S4 FoldSpecTest class}

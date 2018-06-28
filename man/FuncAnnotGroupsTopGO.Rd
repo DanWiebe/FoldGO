@@ -17,7 +17,7 @@ FuncAnnotGroupsTopGO(genegroups, namespace, ...)
 \item algorithm - from TopGO manual: character string specifing which algorithm to use. The algorithms are shown by the topGO whichAlgorithms() function.
 \item statistic - from TopGO manual: character string specifing which test to use. The statistical tests are shown by the topGO whichTests() function.
 \item annot - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
-\item gene2GO - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
+\item GO2genes - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
 \item mapping - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".
 \item ID - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene").
 }}
@@ -31,5 +31,5 @@ Constructor function that creates object of FuncAnnotGroupsTopGO class.
 gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
 gaf <- GAFReader(file = gaf_path)
 gaf_list <- convertToList(gaf)
-annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", gene2GO = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
+annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
 }

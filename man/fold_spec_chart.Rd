@@ -4,7 +4,7 @@
 \alias{fold_spec_chart}
 \title{fold specificity rectangle plot}
 \usage{
-fold_spec_chart(data, interval_labels, x_text_size = 10)
+fold_spec_chart(data, interval_labels, x_text_size)
 }
 \arguments{
 \item{data}{dataframe contains GO term names and coordinates for rectangles both for up and down regulation}

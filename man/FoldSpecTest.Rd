@@ -25,6 +25,6 @@ Constructor function that creates object of FoldSpecTest class.
              as a minimal set of input parameters. For more details see Arguments section.
 }
 \examples{
-FoldSpecTest(up_groups)
-FoldSpecTest(up_groups, fdrstep1 = 0.2, fdrstep2 = 0.01, padjmethod = "BY")
+FoldSpecTest(up_annotobj)
+FoldSpecTest(up_annotobj, fdrstep1 = 0.2, fdrstep2 = 0.01, padjmethod = "BY")
 }
