@@ -42,12 +42,40 @@ As input data the algorithm uses the tables for up- and down-regulated genes tha
 
 First, one have to separate initial set of genes in to quantiles and generate unions of all neighbouring quantiles. For example we 
 will use built-in data derived from experiment on auxin treatment of Arabidopsis thaliana roots
-```{r groups}
-library(FoldGO)
-knitr::kable(head())
+
+```{r groups, warning = FALSE, message = FALSE}
+devtools::load_all(".")
+knitr::kable(head(degenes))
 up_groups <- GeneGroups(degenes, quannumber=6)
 ```
 On the next step we will conduct functional enrichment analysis of generated groups. For functional enrichment analysis FoldGO uses TopGO package
+
+### Custom annotaion
+```{r annot, warning = FALSE, message = FALSE, eval = FALSE}
+library(topGO)
+gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
+gaf <- GAFReader(file = gaf_path)
+gaf_list <- convertToList(gaf)
+annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
+```
+
+### Using annFUN.org db annotaions
+```{r human_annot, warning = FALSE, message = FALSE, eval = FALSE}
+up_groups <- GeneGroups(degenes_hum, quannumber=6)
+annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", padjmethod = "BH", qitborder = 10, genesannot = 1, bggenes = bggenes_hum)
+```
+
+
+### Testing on fold-specificity
+```{r fs_test}
+up_fsobj <- FoldSpecTest(up_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
+down_fsobj <- FoldSpecTest(down_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
+```
+
+### Plot results 
+```{r fs_plot, fig.height = 10, fig.width = 7}
+plot(up_fsobj, down_fsobj)
+```
 
 
 
