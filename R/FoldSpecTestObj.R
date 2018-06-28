@@ -75,8 +75,8 @@ setClass(
 #' @export
 #'
 #' @examples
-#' FoldSpecTest(up_groups)
-#' FoldSpecTest(up_groups, fdrstep1 = 0.2, fdrstep2 = 0.01, padjmethod = "BY")
+#' FoldSpecTest(up_annotobj)
+#' FoldSpecTest(up_annotobj, fdrstep1 = 0.2, fdrstep2 = 0.01, padjmethod = "BY")
 FoldSpecTest <- function(annotgroups, ...) {
   obj <- new(
     "FoldSpecTest",
