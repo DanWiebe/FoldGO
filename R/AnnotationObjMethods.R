@@ -53,7 +53,7 @@ setMethod(
         ontology = namespace,
         allGenes = geneList,
         annot = object@annot,
-        gene2GO = object@gene2GO,
+        GO2genes = object@GO2genes,
         nodeSize = genesannot
       )
     } else {

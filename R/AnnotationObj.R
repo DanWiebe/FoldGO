@@ -47,7 +47,7 @@ setClass(
 #' @slot algorithm character. - from TopGO manual: character string specifing which algorithm to use. The algorithms are shown by the topGO whichAlgorithms() function.
 #' @slot statistic character. - from TopGO manual: character string specifing which test to use. The statistical tests are shown by the topGO whichTests() function.
 #' @slot annot function. - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
-#' @slot gene2GO list. - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
+#' @slot GO2genes list. - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
 #' @slot mapping character. - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".
 #' @slot ID character. - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene")
 #'
@@ -62,7 +62,7 @@ setClass(
     algorithm = "character",
     statistic = "character",
     annot = "function",
-    gene2GO = "list",
+    GO2genes = "list",
     mapping = "character",
     ID = "character"
   ),
@@ -72,7 +72,7 @@ setClass(
     algorithm = "classic",
     statistic = "fisher",
     annot = topGO::annFUN,
-    gene2GO = list(0),
+    GO2genes = list(0),
     mapping = "custom",
     ID = character(0)
   ),
@@ -98,7 +98,7 @@ setClass(
 #' \item algorithm - from TopGO manual: character string specifing which algorithm to use. The algorithms are shown by the topGO whichAlgorithms() function.
 #' \item statistic - from TopGO manual: character string specifing which test to use. The statistical tests are shown by the topGO whichTests() function.
 #' \item annot - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
-#' \item gene2GO - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
+#' \item GO2genes - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
 #' \item mapping - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".
 #' \item ID - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene").
 #' }
@@ -113,11 +113,11 @@ setClass(
 #' gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
 #' gaf <- GAFReader(file = gaf_path)
 #' gaf_list <- convertToList(gaf)
-#' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", gene2GO = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
+#' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
 FuncAnnotGroupsTopGO <- function(genegroups, namespace, ...) {
 
-  if (!requireNamespace("TopGO", quietly = TRUE)) {
-    stop("TopGO package needed for this function to work. Please install it.",
+  if (!requireNamespace("topGO", quietly = TRUE)) {
+    stop("topGO package needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
