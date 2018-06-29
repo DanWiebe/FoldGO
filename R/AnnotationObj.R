@@ -47,7 +47,7 @@ setClass(
 #' @slot algorithm character. - from TopGO manual: character string specifing which algorithm to use. The algorithms are shown by the topGO whichAlgorithms() function.
 #' @slot statistic character. - from TopGO manual: character string specifing which test to use. The statistical tests are shown by the topGO whichTests() function.
 #' @slot annot function. - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
-#' @slot GO2genes list. - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
+#' @slot GO2genes list. - from TopGO manual: named list of character vectors.  The list names are GO identifiers. For each GO the character vector contains the genes identifiers which are mapped to it. Only the most specific annotations are required.
 #' @slot mapping character. - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".
 #' @slot ID character. - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene")
 #'
