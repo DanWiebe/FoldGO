@@ -50,21 +50,57 @@ up_groups <- GeneGroups(degenes, quannumber=6)
 ```
 On the next step we will conduct functional enrichment analysis of generated groups. For functional enrichment analysis FoldGO uses TopGO package
 
-### Custom annotaion
+### Functional annotation
+
+#### Custom annotaion
+
+For custom annotation one have to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. 
+FoldGO provides simple and convinient parser for annotation presented in GAF format. 
+```{r gafread, warning = FALSE, message = FALSE}
+gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO")
+gaf <- GAFReader(file = gaf_path)
+```
+
+One can retrieve direct annotations with some meta information and version of GAF file using following methods:
+
+```{r gaf_getters chunk 1, warning = FALSE, message = FALSE}
+getVersion(gaf)
+```
+
+```{r gaf_getters chunk 2, eval = FALSE}
+getAnnotation(gaf)
+```
+
+and retrieve direct annotations as list object:
+
+```{r converttolist, eval = FALSE}
+gaf_list <- convertToList(gaf)
+```
+
+To annotate our gene groups we will use FuncAnnotGroupsTopGO function which uses topGO package for singular enrichment analysis.
+The minimal set of arguments needed for this function to work is:
+
+* groups - object of GeneGroups class 
+* namespace - character string specifing GO namespace. This argument accepts following values: "BP", "MF" or "CC", where 
+    * BP - biological process
+    * MF - molecular function
+    * CC - cellular component
+* GO2genes - from topGO manual: named list of character vectors.  The list names are GO identifiers. For each GO the character vector contains the genes identifiers which are mapped to it.
+* annot - from topGO manual: functions used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
+* bggenes - vector contains background set of genes
+
 ```{r annot, warning = FALSE, message = FALSE, eval = FALSE}
 library(topGO)
-gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
-gaf <- GAFReader(file = gaf_path)
-gaf_list <- convertToList(gaf)
-annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
+annotobj <- FuncAnnotGroupsTopGO(groups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
 ```
 
-### Using annFUN.org db annotaions
+#### Using annFUN.org db annotaions
+
+Another possibility is to use bioсonductor packages containing annotations for specific organism. For example org.Hs.eg.db (Human) and org.Mm.eg.db (Mouse). 
 ```{r human_annot, warning = FALSE, message = FALSE, eval = FALSE}
 up_groups <- GeneGroups(degenes_hum, quannumber=6)
-annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", padjmethod = "BH", qitborder = 10, genesannot = 1, bggenes = bggenes_hum)
+annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
 ```
-
 
 ### Testing on fold-specificity
 ```{r fs_test}
@@ -73,7 +109,7 @@ down_fsobj <- FoldSpecTest(down_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 ```
 
 ### Plot results 
-```{r fs_plot, fig.height = 10, fig.width = 7}
+```{r fs_plot, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 plot(up_fsobj, down_fsobj)
 ```
 
