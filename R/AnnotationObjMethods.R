@@ -74,11 +74,10 @@ setMethod(
                       classicFisher = resultFisher,
                       topNodes = length(topGO::usedGO(GOdata)))
     #For case when there are less-than sign in pvalue column
-    temp_padj <- p.adjust(sub("<\\s", "",
-                          data_table$classicFisher),
-                          method = padjmethod)
+    data_table$classicFisher <- sub("<\\s", "",
+                                    data_table$classicFisher)
 
-    data_table$padj <- temp_padj
+    data_table$padj <- p.adjust(data_table$classicFisher, method = padjmethod)
     data_table$qtot <- topGO::numSigGenes(GOdata)
     data_table$namespace <- topGO::ontology(GOdata)
     data_table <-
@@ -112,11 +111,10 @@ setMethod(
                                     topNodes = length(topGO::usedGO(GOdata)))
 
       #For case when there are less-than sign in pvalue column
-      temp_padj <- p.adjust(sub("<\\s", "",
-                            data_table$classicFisher),
-                            method = padjmethod)
+      data_table$classicFisher <- sub("<\\s", "",
+                                      data_table$classicFisher)
 
-      data_table$padj <- temp_padj
+      data_table$padj <- p.adjust(data_table$classicFisher, method = padjmethod)
       data_table$qtot <- topGO::numSigGenes(GOdata)
       data_table$namespace <- topGO::ontology(GOdata)
       data_table <-
