@@ -10,8 +10,9 @@ Description: R package for fold-specific functional annotation.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+biocViews: DifferentialExpression, GeneExpression, GO, Software
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
-Imports: topGO
+Imports: topGO, ggplot2, tidyr

@@ -16,13 +16,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-Typical scenario of transcriptome data analysis is identification of differentially expressed genes (DEGs), those with significant changes in the number of transcripts (fold-change), and functional enrichment analysis of DEGs lists using Gene Ontology. Classical gene set enrichment analysis ignores the difference in the fold-changes that lead to loss of valuable information. FoldGO method created to identify the GO terms significantly overrepresented for the genes responded to the factor within a narrow fold-change-interval. FoldGO processes the DEGs list in three steps:
+A typical scenario of transcriptome data analysis is identification of differentially expressed genes (DEGs), those with significant changes in the number of transcripts (fold-change), and functional enrichment analysis of DEGs lists using Gene Ontology. Classical gene set enrichment analysis ignores the difference in the fold-changes that lead to the loss of valuable information. The FoldGO method has been created to identify the GO terms significantly overrepresented for the genes responded to the factor within a narrow fold-change-interval. FoldGO processes the DEGs list in three steps:
 
 *At the first step, FoldGO sorts the genes by their fold-change values, subdivides them into gene sets of equal size (quantiles) and generates the gene sets for all combinations of the neighboring quantiles, including the whole lists of up-regulated or down-regulated genes.
-*On the second step, FoldGO generates the list of GO terms annotated to at least one differentially expressed gene (DEG). Optionally, GO terms significantly enriched in the DEGs annotation can be selected at this step.
-*On the third step, FoldGO performs enrichment analysis for all selected GO terms and for all gene sublists. FoldGO measures the bias in the portion of the genes responded fold-change-specifically versus whole DEGs for the genes associated with a GO term or the background. If the result of the test is significant, such GO terms are considered as fold-change-specific.
+*At the second step, FoldGO generates the list of GO terms annotated to at least one differentially expressed gene (DEG). Optionally, GO terms significantly enriched in the DEGs annotation can be selected at this step.
+*At the third step, FoldGO performs enrichment analysis for all selected GO terms and for all gene sublists. FoldGO measures the bias in the portion of the genes responded fold-change-specifically versus whole DEGs for the genes associated with a GO term or the background. If the result of the test is significant, such GO terms are considered as fold-change-specific.
 
-See an example of the  FoldGO performance in the analysis of the transcriptome data on expression changes of Arabidopsis thaliana genes in response to plant hormone auxin treatment (Omelyanchuk et al., 2017)^[Omelyanchuk, N. A. et al. Auxin regulates functional gene groups in a fold-change-specific manner in Arabidopsis thaliana roots // Nat Sci Rep – 2017. – N 7(1) – p 2489].
+See an example of the FoldGO performance in the analysis of the transcriptome data on expression changes of Arabidopsis thaliana genes in response to plant hormone auxin treatment (Omelyanchuk et al., 2017)^[Omelyanchuk, N. A. et al. Auxin regulates functional gene groups in a fold-change-specific manner in Arabidopsis thaliana roots // Nat Sci Rep – 2017. – N 7(1) – p 2489].
 
 ## Workflow
 
@@ -41,7 +41,7 @@ As input data the algorithm uses the tables for up- and down-regulated genes tha
 |AT2G66890|2.1|
 |...|
 
-First, one have to separate initial set of genes in to quantiles and generate unions of all neighbouring quantiles. For example we will use built-in data derived from experiment on auxin treatment of Arabidopsis thaliana roots. GeneGroups function will take only first two columns, so be sure that your data have gene identifiers in the first column and fold-change values (FC) in the second one. Note that data for up- and down-regulation must be processed separately. In the following example demonstrating GeneGroups function usage only data for up-regulation is used.
+First, one has to separate initial set of genes in to quantiles and generate unions of all neighbouring quantiles. For example, we will use built-in data derived from experiment on auxin treatment of Arabidopsis thaliana roots. GeneGroups function will take only first two columns, so be sure that your data have gene identifiers in the first column and fold-change values (FC) in the second one. Note that data for up- and down-regulation must be processed separately. In the following example demonstrating GeneGroups function usage only the data for up-regulation is used.
 ```{r, eval=FALSE}
 head(degenes)
 ```
@@ -55,13 +55,13 @@ knitr::kable(cut_degenes, row.names = FALSE)
 up_groups <- GeneGroups(degenes, quannumber=6)
 ```
 
-On the next step we will conduct functional enrichment analysis of generated groups. For functional enrichment analysis FoldGO uses TopGO package.
+At the next step we will conduct functional enrichment analysis of generated groups. For functional enrichment analysis FoldGO uses TopGO package.
 
 ### Functional annotation
 
 #### Custom annotaion
 
-For custom annotation one have to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. 
+For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. 
 ```{r gafread, warning = FALSE, message = FALSE}
 gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO")
 gaf <- GAFReader(file = gaf_path)
@@ -86,7 +86,7 @@ gaf_list <- convertToList(gaf)
 To annotate our gene groups we will use FuncAnnotGroupsTopGO function which uses topGO package for singular enrichment analysis. The minimal set of arguments needed for this function to work is:
 
 * groups - object of GeneGroups class 
-* namespace - character string specifing GO namespace. This argument accepts following values: "BP", "MF" or "CC", where 
+* namespace - character string specifing GO namespace. This argument accepts the following values: "BP", "MF" or "CC", where 
     * BP - biological process
     * MF - molecular function
     * CC - cellular component
@@ -101,7 +101,7 @@ annotobj <- FuncAnnotGroupsTopGO(genegroups = up_groups, namespace = "MF", GO2ge
 
 #### Using annotaions from Bioconductor packages
 
-Another possibility is to use bioconductor packages containing annotations for specific organism. For example "org.Hs.eg.db" (Human) and "org.Mm.eg.db" (Mouse), package name must be assigned to `mapping` argument. In this case one have to assign `topGO::annFUN.org` to annot argument. Specify `ID` - From topGO package manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: `c("entrez", "genbank", "alias", "ensembl", "symbol", "genename", "unigene")`.  
+Another possibility is to use bioconductor packages containing annotations for specific organism. For example "org.Hs.eg.db" (Human) and "org.Mm.eg.db" (Mouse), package name must be assigned to `mapping` argument. In this case one has to assign `topGO::annFUN.org` to `annot` argument and specify `ID` (from topGO package manual: character string specifing the gene identifier to use). Currently only the following identifiers can be used: `c("entrez", "genbank", "alias", "ensembl", "symbol", "genename", "unigene")`.  
 
 ```{r human_annot, warning = FALSE, message = FALSE, eval = FALSE}
 up_groups <- GeneGroups(degenes_hum, quannumber=6)
@@ -110,19 +110,18 @@ annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot
 
 ### Testing for fold-specificity
 
-The fold-specificity recognition procedure consists of GO terms preselection from DEGs annotation and fold-change-specific enrichment analysis. On each step the FDR threshold must be established. By default FDR threshold for GO terms preselection (fdrstep1) is set to 1 (no preselection) and FDR threshold for fold-change-specific enrichment analysis (fdrstep2) is set to 0.05. As a default method for mutltiple testing correction FoldGO uses Benjamini-Hochberg correction procedure^[Benjamini, Y., Hochberg, Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society - 1995 - Series B. 57 (1): 289–300]. 
+The fold-specificity recognition procedure consists of GO terms preselection from DEGs annotation and fold-change-specific enrichment analysis. At each step the FDR threshold must be established. By default FDR threshold for GO terms preselection (fdrstep1) is set to 1 (no preselection) and FDR threshold for fold-change-specific enrichment analysis (fdrstep2) is set to 0.05. As a default method for mutltiple testing correction FoldGO uses Benjamini-Hochberg correction procedure^[Benjamini, Y., Hochberg, Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society - 1995 - Series B. 57 (1): 289–300]. 
 
 ```{r fs_test}
 up_fsobj <- FoldSpecTest(up_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 down_fsobj <- FoldSpecTest(down_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 ```
 
-It is possible choose another correction procedure from R base which can be listed via `p.adjust.methods`. Here Benjamini-Yekutieli correction procedure^[ Benjamini, Y., Yekutieli. The control of the false discovery rate in multiple testing under dependency. Annals of Statistics - 2001 - 29 (4): 1165–1188. doi:10.1214/aos/1013699998] is selected.
+It is possible to choose another correction procedure from R base which can be listed via `p.adjust.methods`. Here Benjamini-Yekutieli correction procedure^[ Benjamini, Y., Yekutieli. The control of the false discovery rate in multiple testing under dependency. Annals of Statistics - 2001 - 29 (4): 1165–1188. doi:10.1214/aos/1013699998] is selected.
 
 ```{r fs_test_padj, eval=FALSE}
 FoldSpecTest(up_annotobj, padjmethod = "BY")
 ```
-
 
 One can inspect the results of enrichment analysis as dataframes. Access dataframe with fold-specific terms
 

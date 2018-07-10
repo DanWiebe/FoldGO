@@ -20,7 +20,7 @@ S4 class for FuncAnnotGroupsTopGO object
 
 \item{\code{annot}}{function. - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.}
 
-\item{\code{GO2genes}}{list. - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.}
+\item{\code{GO2genes}}{list. - from TopGO manual: named list of character vectors.  The list names are GO identifiers. For each GO the character vector contains the genes identifiers which are mapped to it. Only the most specific annotations are required.}
 
 \item{\code{mapping}}{character. - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".}
 
