@@ -86,29 +86,51 @@ The minimal set of arguments needed for this function to work is:
     * MF - molecular function
     * CC - cellular component
 * GO2genes - from topGO manual: named list of character vectors.  The list names are GO identifiers. For each GO the character vector contains the genes identifiers which are mapped to it.
-* annot - from topGO manual: functions used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
+* annot - functions used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term. Here it must be assigned with topGO::annFUN.GO2genes
 * bggenes - vector contains background set of genes
 
 ```{r annot, warning = FALSE, message = FALSE, eval = FALSE}
 library(topGO)
-annotobj <- FuncAnnotGroupsTopGO(groups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
+annotobj <- FuncAnnotGroupsTopGO(genegroups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
 ```
 
 #### Using annFUN.org db annotaions
 
-Another possibility is to use bioсonductor packages containing annotations for specific organism. For example org.Hs.eg.db (Human) and org.Mm.eg.db (Mouse). 
+Another possibility is to use bioсonductor packages containing annotations for specific organism. For example "org.Hs.eg.db"" (Human) and "org.Mm.eg.db" (Mouse), package name must be assigned to `mapping` argument. In this case one have to assign `topGO::annFUN.org` to annot argument. Specify `ID` - From topGO package manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: `c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene")`.  
+
 ```{r human_annot, warning = FALSE, message = FALSE, eval = FALSE}
 up_groups <- GeneGroups(degenes_hum, quannumber=6)
 annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
 ```
 
 ### Testing on fold-specificity
+
+The fold-specificity recognition procedure consists of GO terms preselection from DEGs annotation and 
+fold-change-specific enrichment analysis. On each step the FDR threshold must be established. 
+By default FDR threshold for GO terms preselection (fdrstep1) is set to 1 (no preselection) and FDR threshold 
+for fold-change-specific enrichment analysis (fdrstep2) is set to 0.05. As a default method for mutltiple testing correction FoldGO uses Benjamini-Hochberg correction procedure. It is possible choose another correction procedure 
+from R base which can be listed via `p.adjust.methods`. 
+
 ```{r fs_test}
 up_fsobj <- FoldSpecTest(up_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 down_fsobj <- FoldSpecTest(down_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 ```
 
+One can inspect the results of enrichment analysis as dataframes. Access dataframe with fold-specific terms: 
+```{r}
+fs_table <- getFStable(up_fsobj)
+knitr::kable(head(fs_table), format = "html")
+```
+
+And with not fold-specific:
+```{r}
+nfs_table <- getNFStable(up_fsobj)
+knitr::kable(head(nfs_table))
+```
+
 ### Plot results 
+
+
 ```{r fs_plot, warning = FALSE, message = FALSE, fig.height = 10, fig.width = 7}
 plot(up_fsobj, down_fsobj)
 ```
