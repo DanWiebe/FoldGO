@@ -19,6 +19,9 @@ FoldSpecTest(annotgroups, ...)
                            You can specify just the initial letter. ("greater" by default)
 }}
 }
+\value{
+object of FoldSpecTest class
+}
 \description{
 Constructor function that creates object of FoldSpecTest class.
              It takes object which is instance of subclass of AnnotGroups class (e.g. FuncAnnotGroupsTopGO class)

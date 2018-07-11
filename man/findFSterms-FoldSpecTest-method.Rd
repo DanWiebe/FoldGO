@@ -3,7 +3,7 @@
 \docType{methods}
 \name{findFSterms,FoldSpecTest-method}
 \alias{findFSterms,FoldSpecTest-method}
-\title{Title}
+\title{find fold-change-specific terms}
 \usage{
 \S4method{findFSterms}{FoldSpecTest}(object, fdrstep2 = NULL)
 }
@@ -12,6 +12,9 @@
 
 \item{FoldSpecTest}{- Object of FoldSpecTest class}
 }
+\value{
+object of FoldSpecTest class
+}
 \description{
-Title
+find fold-change-specific terms
 }

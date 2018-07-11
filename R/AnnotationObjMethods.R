@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
+#' gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
 #' gaf <- GAFReader(file = gafpath)
 #' gaf_list <- convertToList(gaf)
 #' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", gene2GO = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)
@@ -23,6 +23,7 @@ setMethod(
 #' Functional annotation test
 #'
 #' @param FuncAnnotGroupsTopGO - object of FuncAnnotGroupsTopGO class
+#' @return - object of FuncAnnotGroupsTopGO class
 #'
 #'
 setMethod(

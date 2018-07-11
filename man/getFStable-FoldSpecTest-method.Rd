@@ -3,7 +3,7 @@
 \docType{methods}
 \name{getFStable,FoldSpecTest-method}
 \alias{getFStable,FoldSpecTest-method}
-\title{Title}
+\title{get dataframe with fold-change-specific terms}
 \usage{
 \S4method{getFStable}{FoldSpecTest}(object)
 }
@@ -14,7 +14,7 @@
 - dataframe with fold-specific GO terms data
 }
 \description{
-Title
+get dataframe with fold-change-specific terms
 }
 \examples{
 fs_up <- FoldSpecTest(up_groups)

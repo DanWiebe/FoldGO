@@ -71,7 +71,7 @@ setClass(
 #' @description Constructor function that creates object of FoldSpecTest class.
 #'              It takes object which is instance of subclass of AnnotGroups class (e.g. FuncAnnotGroupsTopGO class)
 #'              as a minimal set of input parameters. For more details see Arguments section.
-#'
+#' @return object of FoldSpecTest class
 #' @export
 #'
 #' @examples

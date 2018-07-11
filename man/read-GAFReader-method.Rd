@@ -10,6 +10,9 @@
 \arguments{
 \item{GAFReader}{- Object of GAFReader class}
 }
+\value{
+- object of GAFReader class
+}
 \description{
 Title
 }

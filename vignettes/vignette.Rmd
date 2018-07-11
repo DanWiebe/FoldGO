@@ -14,15 +14,18 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+devtools::load_all(".")
+library(kableExtra)
 ```
 
 A typical scenario of transcriptome data analysis is identification of differentially expressed genes (DEGs), those with significant changes in the number of transcripts (fold-change), and functional enrichment analysis of DEGs lists using Gene Ontology. Classical gene set enrichment analysis ignores the difference in the fold-changes that lead to the loss of valuable information. The FoldGO method has been created to identify the GO terms significantly overrepresented for the genes responded to the factor within a narrow fold-change-interval. FoldGO processes the DEGs list in three steps:
 
-*At the first step, FoldGO sorts the genes by their fold-change values, subdivides them into gene sets of equal size (quantiles) and generates the gene sets for all combinations of the neighboring quantiles, including the whole lists of up-regulated or down-regulated genes.
-*At the second step, FoldGO generates the list of GO terms annotated to at least one differentially expressed gene (DEG). Optionally, GO terms significantly enriched in the DEGs annotation can be selected at this step.
-*At the third step, FoldGO performs enrichment analysis for all selected GO terms and for all gene sublists. FoldGO measures the bias in the portion of the genes responded fold-change-specifically versus whole DEGs for the genes associated with a GO term or the background. If the result of the test is significant, such GO terms are considered as fold-change-specific.
+* At the first step, FoldGO sorts the genes by their fold-change values, subdivides them into gene sets of equal size (quantiles) and generates the gene sets for all combinations of the neighboring quantiles, including the whole lists of up-regulated or down-regulated genes.
+* At the second step, FoldGO generates the list of GO terms annotated to at least one differentially expressed gene (DEG). Optionally, GO terms significantly enriched in the DEGs annotation can be selected at this step.
+* At the third step, FoldGO performs enrichment analysis for all selected GO terms and for all gene sublists. FoldGO measures the bias in the portion of the genes responded fold-change-specifically versus whole DEGs for the genes associated with a GO term or the background. If the result of the test is significant, such GO terms are considered as fold-change-specific.
 
-See an example of the FoldGO performance in the analysis of the transcriptome data on expression changes of Arabidopsis thaliana genes in response to plant hormone auxin treatment (Omelyanchuk et al., 2017)^[Omelyanchuk, N. A. et al. Auxin regulates functional gene groups in a fold-change-specific manner in Arabidopsis thaliana roots // Nat Sci Rep – 2017. – N 7(1) – p 2489].
+See an example of the FoldGO performance in the analysis of the transcriptome data on expression changes of Arabidopsis thaliana genes in response to plant hormone auxin treatment (Omelyanchuk et al., 2017)^[Omelyanchuk, N. A. et al. Auxin regulates functional gene groups in a fold-change-specific manner in *Arabidopsis thaliana* roots // Nat Sci Rep – 2017. – N 7(1) – p 2489].
 
 ## Workflow
 
@@ -41,12 +44,11 @@ As input data the algorithm uses the tables for up- and down-regulated genes tha
 |AT2G66890|2.1|
 |...|
 
-First, one has to separate initial set of genes in to quantiles and generate unions of all neighbouring quantiles. For example, we will use built-in data derived from experiment on auxin treatment of Arabidopsis thaliana roots. GeneGroups function will take only first two columns, so be sure that your data have gene identifiers in the first column and fold-change values (FC) in the second one. Note that data for up- and down-regulation must be processed separately. In the following example demonstrating GeneGroups function usage only the data for up-regulation is used.
+First, one has to separate initial set of genes in to quantiles and generate unions of all neighbouring quantiles. For example, we will use built-in data derived from experiment on auxin treatment of *Arabidopsis thaliana* roots. GeneGroups function will take only first two columns, so be sure that your data have gene identifiers in the first column and fold-change values (FC) in the second one. Note that data for up- and down-regulation must be processed separately. In the following example demonstrating GeneGroups function usage only the data for up-regulation is used.
 ```{r, eval=FALSE}
 head(degenes)
 ```
 ```{r, warning = FALSE, message = FALSE, echo=FALSE}
-devtools::load_all(".")
 cut_degenes <- head(degenes)
 cut_degenes[, c(3, 4)] <- sapply(c(3, 4), function(x) formatC(as.numeric(cut_degenes[, x]), digits = 2,  format="e"))
 knitr::kable(cut_degenes, row.names = FALSE)
@@ -63,7 +65,7 @@ At the next step we will conduct functional enrichment analysis of generated gro
 
 For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. 
 ```{r gafread, warning = FALSE, message = FALSE}
-gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO")
+gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO")
 gaf <- GAFReader(file = gaf_path)
 ```
 
@@ -79,7 +81,7 @@ getAnnotation(gaf)
 
 and retrieve direct annotations as list object:
 
-```{r converttolist, eval = FALSE}
+```{r converttolist, warning = FALSE, message = FALSE}
 gaf_list <- convertToList(gaf)
 ```
 

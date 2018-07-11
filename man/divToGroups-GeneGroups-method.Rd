@@ -10,6 +10,9 @@
 \arguments{
 \item{GeneGroups}{- Object of GeneGroups class}
 }
+\value{
+object of GeneGroups class
+}
 \description{
 Title
 }

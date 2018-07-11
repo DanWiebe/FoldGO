@@ -14,6 +14,9 @@ and corresponding fold change values in the second row}
 
 \item{logfold}{- TRUE if fold values are presented in log scale, otherwise is FALSE (TRUE by default)}
 }
+\value{
+- object of GeneGroups class
+}
 \description{
 Constructor function that creates object of GeneGroups class.
              It takes dataframe with genes ID's and fold values, number of quantiles

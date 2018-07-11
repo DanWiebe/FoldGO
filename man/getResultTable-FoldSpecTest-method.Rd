@@ -3,7 +3,8 @@
 \docType{methods}
 \name{getResultTable,FoldSpecTest-method}
 \alias{getResultTable,FoldSpecTest-method}
-\title{Title}
+\title{get dataframe with both fold-change-specific
+and not fold-change-specific terms}
 \usage{
 \S4method{getResultTable}{FoldSpecTest}(object)
 }
@@ -14,7 +15,8 @@
 - table contains all GO terms and related data
 }
 \description{
-Title
+get dataframe with both fold-change-specific
+and not fold-change-specific terms
 }
 \examples{
 fs_up <- FoldSpecTest(up_groups)

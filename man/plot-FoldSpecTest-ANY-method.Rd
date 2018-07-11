@@ -3,15 +3,18 @@
 \docType{methods}
 \name{plot,FoldSpecTest,ANY-method}
 \alias{plot,FoldSpecTest,ANY-method}
-\title{Fold-specificity chart plotting}
+\title{Fold-change specific GO Profile chart plotting}
 \usage{
 \S4method{plot}{FoldSpecTest,ANY}(x, y, x_text_size = 10)
 }
 \arguments{
 \item{FoldSpecTest}{- object of S4 FoldSpecTest class}
 }
+\value{
+- Fold-change specific GO Profile plot
+}
 \description{
-Fold-specificity chart plotting
+Fold-change specific GO Profile chart plotting
 }
 \examples{
 # calculate fold-specificity test for up-regulated genes

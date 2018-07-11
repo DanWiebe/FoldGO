@@ -22,13 +22,16 @@ FuncAnnotGroupsTopGO(genegroups, namespace, ...)
 \item ID - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene").
 }}
 }
+\value{
+- object of FuncAnnotGroupsTopGO class
+}
 \description{
 Constructor function that creates object of FuncAnnotGroupsTopGO class.
              It takes GeneGroups object and GO namespace ("BP", "MF" or "CC") as a minimal set of input parameters.
              For more details see Arguments section.
 }
 \examples{
-gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
+gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
 gaf <- GAFReader(file = gaf_path)
 gaf_list <- convertToList(gaf)
 annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes, padjmethod = "BH", qitborder = 10, genesannot = 1)

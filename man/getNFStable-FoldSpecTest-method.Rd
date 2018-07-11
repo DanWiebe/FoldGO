@@ -3,7 +3,7 @@
 \docType{methods}
 \name{getNFStable,FoldSpecTest-method}
 \alias{getNFStable,FoldSpecTest-method}
-\title{Title}
+\title{get dataframe with not fold-change-specific terms}
 \usage{
 \S4method{getNFStable}{FoldSpecTest}(object)
 }
@@ -14,7 +14,7 @@
 - dataframe with not fold-specific GO terms data
 }
 \description{
-Title
+get dataframe with not fold-change-specific terms
 }
 \examples{
 fs_up <- FoldSpecTest(up_groups)

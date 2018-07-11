@@ -87,7 +87,7 @@ setMethod(f = "getRegType",
 #' Title
 #'
 #' @param GeneGroups - Object of GeneGroups class
-#'
+#' @return object of GeneGroups class
 #'
 setMethod(f = "divToGroups",
           signature = "GeneGroups",

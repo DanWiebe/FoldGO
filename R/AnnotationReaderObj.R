@@ -41,10 +41,11 @@ setClass(
 #' @description Constructor function that creates object of GAFReader class.
 #'              As a parameter it takes full path to file of GAF format.
 #'
+#' @return - object of GAFReader class
 #' @export
 #'
 #' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
+#' gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
 #' gaf <- GAFReader(file = gafpath)
 GAFReader <- function(file) {
   obj <- new(

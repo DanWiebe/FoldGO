@@ -10,6 +10,9 @@
 \arguments{
 \item{FuncAnnotGroupsTopGO}{- object of FuncAnnotGroupsTopGO class}
 }
+\value{
+- object of FuncAnnotGroupsTopGO class
+}
 \description{
 Functional annotation test
 }

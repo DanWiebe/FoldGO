@@ -3,13 +3,16 @@
 \docType{methods}
 \name{calcFSsignificance,FoldSpecTest-method}
 \alias{calcFSsignificance,FoldSpecTest-method}
-\title{Title}
+\title{run enrichment analysis}
 \usage{
 \S4method{calcFSsignificance}{FoldSpecTest}(object)
 }
 \arguments{
 \item{FoldSpecTest}{- Object of FoldSpecTest class}
 }
+\value{
+object of FoldSpecTest class
+}
 \description{
-Title
+run enrichment analysis
 }

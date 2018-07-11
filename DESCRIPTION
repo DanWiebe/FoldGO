@@ -13,6 +13,10 @@ LazyData: true
 biocViews: DifferentialExpression, GeneExpression, GO, Software
 RoxygenNote: 6.0.1
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    devtools,
+    kableExtra
 VignetteBuilder: knitr
-Imports: topGO, ggplot2, tidyr
+Imports: topGO, 
+    ggplot2, 
+    tidyr

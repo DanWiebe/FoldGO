@@ -41,7 +41,7 @@ setClass(
 #'              It takes dataframe with genes ID's and fold values, number of quantiles
 #'              and logical variable which must set to TRUE if fold values are presented in logarithmic scale,
 #'              otherwise it must be set to FALSE value (TRUE by default) as parameters.
-#'
+#' @return - object of GeneGroups class
 #' @export
 #'
 #' @examples

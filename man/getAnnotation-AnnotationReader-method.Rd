@@ -17,7 +17,7 @@
 Title
 }
 \examples{
-gaf_path <- system.file("extdata", "gene_association.tair", package = "FsgorS4package", mustWork = TRUE)
+gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
 gaf <- GAFReader(file = gafpath)
 getAnnotation(gaf)
 }

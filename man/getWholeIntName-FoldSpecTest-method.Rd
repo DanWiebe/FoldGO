@@ -3,7 +3,7 @@
 \docType{methods}
 \name{getWholeIntName,FoldSpecTest-method}
 \alias{getWholeIntName,FoldSpecTest-method}
-\title{Title}
+\title{get name of largest fold-change interval (DEG interval)}
 \usage{
 \S4method{getWholeIntName}{FoldSpecTest}(object)
 }
@@ -14,7 +14,7 @@
 - name of the interval containing all differentially expressed genes
 }
 \description{
-Title
+get name of largest fold-change interval (DEG interval)
 }
 \examples{
 fs_up <- FoldSpecTest(up_groups)

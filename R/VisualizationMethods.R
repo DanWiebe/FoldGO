@@ -1,7 +1,7 @@
-#' Fold-specificity chart plotting
+#' Fold-change specific GO Profile chart plotting
 #'
 #' @param FoldSpecTest - object of S4 FoldSpecTest class
-#'
+#' @return - Fold-change specific GO Profile plot
 #' @export
 #'
 #' @examples
@@ -66,7 +66,7 @@ create_intervals_matrix <- function(intervals) {
 #'
 #' @param fs_res_up dataframe contains fold-specificty recognition data (recognize_fs_terms function output) for up regulation
 #' @param fs_res_down dataframe contains fold-specificty recognition data (recognize_fs_terms function output) for down regulation
-#'
+#' @importFrom tidyr spread
 #' @return input dataframe for create.fold.spec.chart function
 #'
 fold_spec_chart_data <-
@@ -114,9 +114,10 @@ fold_spec_chart_data <-
     }
 
     # create matrices with intervals coordinates
-    in_mat_up <- FoldGO::create_intervals_matrix(fs_res_combined_spreaded$up)
+    in_mat_up <-
+      create_intervals_matrix(fs_res_combined_spreaded$up)
     in_mat_down <-
-      FoldGO::create_intervals_matrix(fs_res_combined_spreaded$down)
+      create_intervals_matrix(fs_res_combined_spreaded$down)
 
     # add start - end coordinates to resulting dataframe
     fs_res_combined_spreaded$start_up <- in_mat_up[, 1]

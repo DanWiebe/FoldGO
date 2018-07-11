@@ -1,5 +1,5 @@
 #--------------------GETTERS-------------------
-#' Title
+#' get dataframe with fold-change-specific terms
 #'
 #' @param FoldSpecTest - Object of FoldSpecTest class
 #'
@@ -16,7 +16,7 @@ setMethod(f = "getFStable",
           }
 )
 
-#' Title
+#' get dataframe with not fold-change-specific terms
 #'
 #' @param FoldSpecTest - Object of FoldSpecTest class
 #'
@@ -33,7 +33,8 @@ setMethod(f = "getNFStable",
           }
 )
 
-#' Title
+#' get dataframe with both fold-change-specific
+#' and not fold-change-specific terms
 #'
 #' @param FoldSpecTest - Object of FoldSpecTest class
 #'
@@ -49,7 +50,7 @@ setMethod(f = "getResultTable",
             return(object@result_table)
           }
 )
-#' Title
+#' get name of largest fold-change interval (DEG interval)
 #'
 #' @param FoldSpecTest - Object of FoldSpecTest class
 #'
@@ -66,10 +67,12 @@ setMethod(f = "getWholeIntName",
           }
 )
 #----------------------------------------------
-#' Title
+#' find fold-change-specific terms
 #'
 #' @param FoldSpecTest - Object of FoldSpecTest class
 #' @param fdrstep2 - FDR threshold for 2 step of fold-specificty recognition procedure
+#'
+#' @return object of FoldSpecTest class
 #'
 setMethod(f = "findFSterms",
           signature = "FoldSpecTest",
@@ -100,9 +103,11 @@ setMethod(f = "findFSterms",
 )
 
 
-#' Title
+#' run enrichment analysis
 #'
 #' @param FoldSpecTest - Object of FoldSpecTest class
+#'
+#' @return object of FoldSpecTest class
 #'
 setMethod(f = "calcFSsignificance",
           signature = "FoldSpecTest",
