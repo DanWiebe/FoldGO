@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' fs_up <- FoldSpecTest(up_groups)
+#' fs_up <- FoldSpecTest(up_annotobj)
 #' getFStable(fs_up)
 setMethod(f = "getFStable",
           signature = "FoldSpecTest",
@@ -24,7 +24,7 @@ setMethod(f = "getFStable",
 #' @export
 #'
 #' @examples
-#' fs_up <- FoldSpecTest(up_groups)
+#' fs_up <- FoldSpecTest(up_annotobj)
 #' getNFStable(fs_up)
 setMethod(f = "getNFStable",
           signature = "FoldSpecTest",
@@ -42,7 +42,7 @@ setMethod(f = "getNFStable",
 #' @export
 #'
 #' @examples
-#' fs_up <- FoldSpecTest(up_groups)
+#' fs_up <- FoldSpecTest(up_annotobj)
 #' getResultTable(fs_up)
 setMethod(f = "getResultTable",
           signature = "FoldSpecTest",
@@ -58,7 +58,7 @@ setMethod(f = "getResultTable",
 #' @export
 #'
 #' @examples
-#' fs_up <- FoldSpecTest(up_groups)
+#' fs_up <- FoldSpecTest(up_annotobj)
 #' getWholeIntName(fs_up)
 setMethod(f = "getWholeIntName",
           signature = "FoldSpecTest",

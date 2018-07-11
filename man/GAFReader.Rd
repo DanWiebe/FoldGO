@@ -18,5 +18,5 @@ Constructor function that creates object of GAFReader class.
 }
 \examples{
 gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
-gaf <- GAFReader(file = gafpath)
+gaf <- GAFReader(file = gaf_path)
 }

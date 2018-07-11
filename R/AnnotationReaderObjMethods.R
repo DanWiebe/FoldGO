@@ -7,8 +7,8 @@
 #' @export
 #'
 #' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gafpath)
+#' gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
+#' gaf <- GAFReader(file = gaf_path)
 #' getVersion(gaf)
 setMethod(
   f = "getVersion",
@@ -26,8 +26,8 @@ setMethod(
 #' @export
 #'
 #' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gafpath)
+#' gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
+#' gaf <- GAFReader(file = gaf_path)
 #' getAnnotation(gaf)
 setMethod(
   f = "getAnnotation",
@@ -83,8 +83,8 @@ setMethod(
 #' @return - list with GO term id's as keys and Gene ID's as values
 #' @export
 #' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair", package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gafpath)
+#' gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
+#' gaf <- GAFReader(file = gaf_path)
 #' convertToList(gaf)
 setMethod(
   f = "convertToList",

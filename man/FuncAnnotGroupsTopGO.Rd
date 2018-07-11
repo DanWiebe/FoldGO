@@ -31,6 +31,7 @@ Constructor function that creates object of FuncAnnotGroupsTopGO class.
              For more details see Arguments section.
 }
 \examples{
+library(topGO)
 gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
 gaf <- GAFReader(file = gaf_path)
 gaf_list <- convertToList(gaf)

@@ -17,6 +17,6 @@
 get name of largest fold-change interval (DEG interval)
 }
 \examples{
-fs_up <- FoldSpecTest(up_groups)
+fs_up <- FoldSpecTest(up_annotobj)
 getWholeIntName(fs_up)
 }

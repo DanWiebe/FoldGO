@@ -17,6 +17,6 @@
 get dataframe with not fold-change-specific terms
 }
 \examples{
-fs_up <- FoldSpecTest(up_groups)
+fs_up <- FoldSpecTest(up_annotobj)
 getNFStable(fs_up)
 }
