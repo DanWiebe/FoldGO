@@ -6,9 +6,9 @@
 #'
 #' @examples
 #' # calculate fold-specificity test for up-regulated genes
-#' up_fs <- FoldSpecTest(up_groups)
+#' up_fs <- FoldSpecTest(up_annotobj)
 #' # calculate fold-specificity test for down-regulated genes
-#' down_fs <- FoldSpecTest(down_groups)
+#' down_fs <- FoldSpecTest(down_annotobj)
 #' plot(up_fs, down_fs)
 setMethod(f = "plot",
           signature = "FoldSpecTest",

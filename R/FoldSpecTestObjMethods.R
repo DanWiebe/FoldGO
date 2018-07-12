@@ -231,3 +231,10 @@ setMethod(f = "calcFSsignificance",
             return(object)
           }
 )
+
+setMethod("show", "FoldSpecTest",
+          function(object)cat(paste0("Object of FoldSpecTest class\n",
+                                     "FDR for 1 step of analysis = ", object@fdrstep1, "\n",
+                                     "FDR for 2 step of analysis = ", object@fdrstep2, "\n",
+                                     "Multiple testing correction = ", object@padjmethod))
+)

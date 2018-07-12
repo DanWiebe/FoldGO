@@ -17,7 +17,8 @@
 Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
 }
 \examples{
-gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO", mustWork = TRUE)
+gaf_path <- system.file("extdata", "gene_association.tair.lzma",
+                          package = "FoldGO", mustWork = TRUE)
 gaf <- GAFReader(file = gaf_path)
 convertToList(gaf)
 }
