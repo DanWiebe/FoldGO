@@ -1,6 +1,8 @@
 #' Fold-change specific GO Profile chart plotting
 #'
-#' @param FoldSpecTest - object of S4 FoldSpecTest class
+#' @param x - object of S4 FoldSpecTest class with up-regulated genes
+#' @param y - object of S4 FoldSpecTest class with down-regulated genes
+#' @param x_text_size - x axis labels size
 #' @return - Fold-change specific GO Profile plot
 #' @export
 #'

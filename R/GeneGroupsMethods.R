@@ -1,14 +1,10 @@
 #--------------------GETTERS-------------------
-#' Title
+#' Get list of gene sets for each quatile and all combinations
 #'
-#' @param GeneGroups - Object of GeneGroups class
+#' @param object - Object of GeneGroups class
 #'
 #' @return - list of gene sets for each quatile and all combinations
 #' @export
-#'
-#' @examples
-#' gene_groups <- GeneGroups(degenes, 6)
-#' getGroups(gene_groups)
 setMethod(f = "getGroups",
           signature = "GeneGroups",
           definition = function(object){
@@ -16,16 +12,12 @@ setMethod(f = "getGroups",
           }
 )
 
-#' Title
+#' Get number of quantiles
 #'
-#' @param GeneGroups - Object of GeneGroups class
+#' @param object - Object of GeneGroups class
 #'
 #' @return - number of quantiles
 #' @export
-#'
-#' @examples
-#' gene_groups <- GeneGroups(degenes, 6)
-#' getQuanNumber(gene_groups)
 setMethod(f = "getQuanNumber",
           signature = "GeneGroups",
           definition = function(object){
@@ -33,16 +25,12 @@ setMethod(f = "getQuanNumber",
           }
 )
 
-#' Title
+#' Get vector of intervals names
 #'
-#' @param GeneGroups - Object of GeneGroups class
+#' @param object - Object of GeneGroups class
 #'
 #' @return - vector of intervals names
 #' @export
-#'
-#' @examples
-#' gene_groups <- GeneGroups(degenes, 6)
-#' getIntNames(gene_groups)
 setMethod(f = "getIntNames",
           signature = "GeneGroups",
           definition = function(object){
@@ -50,16 +38,12 @@ setMethod(f = "getIntNames",
           }
 )
 
-#' Title
+#' Get name of the interval containing all differentially expressed genes
 #'
-#' @param GeneGroups - Object of GeneGroups class
+#' @param object - Object of GeneGroups class
 #'
 #' @return - name of the interval containing all differentially expressed genes
 #' @export
-#'
-#' @examples
-#' gene_groups <- GeneGroups(degenes, 6)
-#' getWholeIntName(gene_groups)
 setMethod(f = "getWholeIntName",
           signature = "GeneGroups",
           definition = function(object){
@@ -67,16 +51,12 @@ setMethod(f = "getWholeIntName",
           }
 )
 
-#' Title
+#' Get regulation type
 #'
-#' @param GeneGroups - Object of GeneGroups class
+#' @param object - Object of GeneGroups class
 #'
 #' @return - regulation type (up or down)
 #' @export
-#'
-#' @examples
-#' gene_groups <- GeneGroups(degenes, 6)
-#' getRegType(gene_groups)
 setMethod(f = "getRegType",
           signature = "GeneGroups",
           definition = function(object){
@@ -84,9 +64,9 @@ setMethod(f = "getRegType",
           }
 )
 #----------------------------------------------
-#' Title
+#' Divide initial set of genes in to quantiles
 #'
-#' @param GeneGroups - Object of GeneGroups class
+#' @param object - Object of GeneGroups class
 #' @return object of GeneGroups class
 #'
 setMethod(f = "divToGroups",

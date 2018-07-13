@@ -3,22 +3,16 @@
 \docType{methods}
 \name{getAnnotation,AnnotationReader-method}
 \alias{getAnnotation,AnnotationReader-method}
-\title{Title}
+\title{Get annotation from GAF file}
 \usage{
 \S4method{getAnnotation}{AnnotationReader}(object)
 }
 \arguments{
-\item{AnnotationReader}{- Object that is instance of subclass of AnnotationReader class}
+\item{object}{- Object that is instance of subclass of AnnotationReader class}
 }
 \value{
 - dataframe contains annotation
 }
 \description{
-Title
-}
-\examples{
-gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-                          package = "FoldGO", mustWork = TRUE)
-gaf <- GAFReader(file = gaf_path)
-getAnnotation(gaf)
+Get annotation from GAF file
 }

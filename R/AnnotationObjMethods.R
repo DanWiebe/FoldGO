@@ -1,22 +1,10 @@
 #--------------------GETTERS-------------------
 #' Accessor method for list of functional annotation result tables
 #'
-#' @param FuncAnnotGroups - object of FuncAnnotGroups class
+#' @param object - object of FuncAnnotGroups class
 #'
 #' @return - list with filenames as keys and annotaton data frames as values
 #' @export
-#'
-#' @examples
-#' library(topGO)
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
-#' gaf_list <- convertToList(gaf)
-#' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
-#'                                  annot = topGO::annFUN.GO2genes,
-#'                                  bggenes = bggenes, padjmethod = "BH",
-#'                                  qitborder = 10, genesannot = 1)
-#' getResultList(annotobj)
 setMethod(
   f = "getResultList",
   signature = "FuncAnnotGroups",
@@ -27,7 +15,7 @@ setMethod(
 #----------------------------------------------
 #' Functional annotation test
 #'
-#' @param FuncAnnotGroupsTopGO - object of FuncAnnotGroupsTopGO class
+#' @param object - object of FuncAnnotGroupsTopGO class
 #' @return - object of FuncAnnotGroupsTopGO class
 #'
 #'

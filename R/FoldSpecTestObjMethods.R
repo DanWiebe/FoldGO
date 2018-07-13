@@ -1,14 +1,10 @@
 #--------------------GETTERS-------------------
-#' get dataframe with fold-change-specific terms
+#' Get dataframe with fold-change-specific terms
 #'
-#' @param FoldSpecTest - Object of FoldSpecTest class
+#' @param object - Object of FoldSpecTest class
 #'
 #' @return - dataframe with fold-specific GO terms data
 #' @export
-#'
-#' @examples
-#' fs_up <- FoldSpecTest(up_annotobj)
-#' getFStable(fs_up)
 setMethod(f = "getFStable",
           signature = "FoldSpecTest",
           definition = function(object){
@@ -16,16 +12,12 @@ setMethod(f = "getFStable",
           }
 )
 
-#' get dataframe with not fold-change-specific terms
+#' Get dataframe with not fold-change-specific terms
 #'
-#' @param FoldSpecTest - Object of FoldSpecTest class
+#' @param object - Object of FoldSpecTest class
 #'
 #' @return - dataframe with not fold-specific GO terms data
 #' @export
-#'
-#' @examples
-#' fs_up <- FoldSpecTest(up_annotobj)
-#' getNFStable(fs_up)
 setMethod(f = "getNFStable",
           signature = "FoldSpecTest",
           definition = function(object){
@@ -33,33 +25,25 @@ setMethod(f = "getNFStable",
           }
 )
 
-#' get dataframe with both fold-change-specific
+#' Get dataframe with both fold-change-specific
 #' and not fold-change-specific terms
 #'
-#' @param FoldSpecTest - Object of FoldSpecTest class
+#' @param object - Object of FoldSpecTest class
 #'
 #' @return - table contains all GO terms and related data
 #' @export
-#'
-#' @examples
-#' fs_up <- FoldSpecTest(up_annotobj)
-#' getResultTable(fs_up)
 setMethod(f = "getResultTable",
           signature = "FoldSpecTest",
           definition = function(object){
             return(object@result_table)
           }
 )
-#' get name of largest fold-change interval (DEG interval)
+#' Get name of largest fold-change interval (DEG interval)
 #'
-#' @param FoldSpecTest - Object of FoldSpecTest class
+#' @param object - Object of FoldSpecTest class
 #'
 #' @return - name of the interval containing all differentially expressed genes
 #' @export
-#'
-#' @examples
-#' fs_up <- FoldSpecTest(up_annotobj)
-#' getWholeIntName(fs_up)
 setMethod(f = "getWholeIntName",
           signature = "FoldSpecTest",
           definition = function(object){
@@ -67,9 +51,9 @@ setMethod(f = "getWholeIntName",
           }
 )
 #----------------------------------------------
-#' find fold-change-specific terms
+#' Find fold-change-specific terms
 #'
-#' @param FoldSpecTest - Object of FoldSpecTest class
+#' @param object - Object of FoldSpecTest class
 #' @param fdrstep2 - FDR threshold for 2 step of fold-specificty recognition procedure
 #'
 #' @return object of FoldSpecTest class
@@ -103,9 +87,9 @@ setMethod(f = "findFSterms",
 )
 
 
-#' run enrichment analysis
+#' Run enrichment analysis
 #'
-#' @param FoldSpecTest - Object of FoldSpecTest class
+#' @param object - Object of FoldSpecTest class
 #'
 #' @return object of FoldSpecTest class
 #'

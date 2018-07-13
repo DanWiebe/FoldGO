@@ -3,20 +3,16 @@
 \docType{methods}
 \name{getWholeIntName,GeneGroups-method}
 \alias{getWholeIntName,GeneGroups-method}
-\title{Title}
+\title{Get name of the interval containing all differentially expressed genes}
 \usage{
 \S4method{getWholeIntName}{GeneGroups}(object)
 }
 \arguments{
-\item{GeneGroups}{- Object of GeneGroups class}
+\item{object}{- Object of GeneGroups class}
 }
 \value{
 - name of the interval containing all differentially expressed genes
 }
 \description{
-Title
-}
-\examples{
-gene_groups <- GeneGroups(degenes, 6)
-getWholeIntName(gene_groups)
+Get name of the interval containing all differentially expressed genes
 }

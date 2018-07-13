@@ -3,22 +3,16 @@
 \docType{methods}
 \name{getVersion,GAFReader-method}
 \alias{getVersion,GAFReader-method}
-\title{Title}
+\title{Get version of GAF file}
 \usage{
 \S4method{getVersion}{GAFReader}(object)
 }
 \arguments{
-\item{GAFReader}{- Object of GAFReader class}
+\item{object}{- Object of GAFReader class}
 }
 \value{
 - version of GAF file
 }
 \description{
-Title
-}
-\examples{
-gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-                         package = "FoldGO", mustWork = TRUE)
-gaf <- GAFReader(file = gaf_path)
-getVersion(gaf)
+Get version of GAF file
 }

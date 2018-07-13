@@ -3,20 +3,16 @@
 \docType{methods}
 \name{getWholeIntName,FoldSpecTest-method}
 \alias{getWholeIntName,FoldSpecTest-method}
-\title{get name of largest fold-change interval (DEG interval)}
+\title{Get name of largest fold-change interval (DEG interval)}
 \usage{
 \S4method{getWholeIntName}{FoldSpecTest}(object)
 }
 \arguments{
-\item{FoldSpecTest}{- Object of FoldSpecTest class}
+\item{object}{- Object of FoldSpecTest class}
 }
 \value{
 - name of the interval containing all differentially expressed genes
 }
 \description{
-get name of largest fold-change interval (DEG interval)
-}
-\examples{
-fs_up <- FoldSpecTest(up_annotobj)
-getWholeIntName(fs_up)
+Get name of largest fold-change interval (DEG interval)
 }

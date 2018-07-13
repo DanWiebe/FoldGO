@@ -1,16 +1,10 @@
 #--------------------GETTERS-------------------
-#' Title
+#' Get version of GAF file
 #'
-#' @param GAFReader - Object of GAFReader class
+#' @param object - Object of GAFReader class
 #'
 #' @return - version of GAF file
 #' @export
-#'
-#' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
-#' getVersion(gaf)
 setMethod(
   f = "getVersion",
   signature = "GAFReader",
@@ -19,18 +13,12 @@ setMethod(
   }
 )
 
-#' Title
+#' Get annotation from GAF file
 #'
-#' @param AnnotationReader - Object that is instance of subclass of AnnotationReader class
+#' @param object - Object that is instance of subclass of AnnotationReader class
 #'
 #' @return - dataframe contains annotation
 #' @export
-#'
-#' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                           package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
-#' getAnnotation(gaf)
 setMethod(
   f = "getAnnotation",
   signature = "AnnotationReader",
@@ -41,9 +29,9 @@ setMethod(
 
 #----------------------------------------------
 
-#' Title
+#' Read GAF file
 #'
-#' @param GAFReader - Object of GAFReader class
+#' @param object - Object of GAFReader class
 #' @return - object of GAFReader class
 #'
 setMethod(
@@ -80,15 +68,10 @@ setMethod(
 
 #' Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
 #'
-#' @param GAFReader - object of GAFReader class
+#' @param object - object of GAFReader class
 #'
 #' @return - list with GO term id's as keys and Gene ID's as values
 #' @export
-#' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                           package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
-#' convertToList(gaf)
 setMethod(
   f = "convertToList",
   signature = "GAFReader",

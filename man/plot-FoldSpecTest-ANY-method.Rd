@@ -8,7 +8,11 @@
 \S4method{plot}{FoldSpecTest,ANY}(x, y, x_text_size = 10)
 }
 \arguments{
-\item{FoldSpecTest}{- object of S4 FoldSpecTest class}
+\item{x}{- object of S4 FoldSpecTest class with up-regulated genes}
+
+\item{y}{- object of S4 FoldSpecTest class with down-regulated genes}
+
+\item{x_text_size}{- x axis labels size}
 }
 \value{
 - Fold-change specific GO Profile plot
