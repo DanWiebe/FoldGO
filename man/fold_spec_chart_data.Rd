@@ -8,9 +8,15 @@ fold_spec_chart_data(fs_res_up, fs_res_down, nfs_res_up, nfs_res_down,
   wholeintname)
 }
 \arguments{
-\item{fs_res_up}{dataframe contains fold-specificty recognition data (recognize_fs_terms function output) for up regulation}
+\item{fs_res_up}{- dataframe contains fold-specific GO terms and related data for up-regulation}
 
-\item{fs_res_down}{dataframe contains fold-specificty recognition data (recognize_fs_terms function output) for down regulation}
+\item{fs_res_down}{- dataframe contains fold-specific GO terms and related data for down-regulation}
+
+\item{nfs_res_up}{- dataframe contains not fold-specific GO terms and related data for up-regulation}
+
+\item{nfs_res_down}{- dataframe contains not fold-specific GO terms and related data for down-regulation}
+
+\item{wholeintname}{- name of the interval containing all differentially expressed genes}
 }
 \value{
 input dataframe for create.fold.spec.chart function

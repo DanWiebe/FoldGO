@@ -37,7 +37,10 @@ setClass(
 #' @param inputtable - dataframe contains initial set of genes gene ID's in the first row
 #'             and corresponding fold change values in the second row
 #' @param quannumber - number of quantiles (e.g. 2,3,4...)
-#' @param logfold - TRUE if fold values are presented in log scale, otherwise is FALSE (TRUE by default)
+#' @param ... - Other parameters:
+#' \itemize{
+#' \item logfold - TRUE if fold values are presented in log scale, otherwise is FALSE
+#' }
 #'
 #' @description Constructor function that creates object of GeneGroups class.
 #'              It takes dataframe with genes ID's and fold values, number of quantiles

@@ -64,8 +64,12 @@ create_intervals_matrix <- function(intervals) {
 #'
 #' Create input data for rectangle plot (fold_spec_chart function) using recognize_fs_terms function output as input
 #'
-#' @param fs_res_up dataframe contains fold-specificty recognition data (recognize_fs_terms function output) for up regulation
-#' @param fs_res_down dataframe contains fold-specificty recognition data (recognize_fs_terms function output) for down regulation
+#' @param fs_res_up - dataframe contains fold-specific GO terms and related data for up-regulation
+#' @param fs_res_down - dataframe contains fold-specific GO terms and related data for down-regulation
+#' @param nfs_res_up - dataframe contains not fold-specific GO terms and related data for up-regulation
+#' @param nfs_res_down - dataframe contains not fold-specific GO terms and related data for down-regulation
+#' @param wholeintname - name of the interval containing all differentially expressed genes
+#'
 #' @importFrom tidyr spread
 #' @return input dataframe for create.fold.spec.chart function
 #'

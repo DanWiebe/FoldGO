@@ -12,7 +12,10 @@ and corresponding fold change values in the second row}
 
 \item{quannumber}{- number of quantiles (e.g. 2,3,4...)}
 
-\item{logfold}{- TRUE if fold values are presented in log scale, otherwise is FALSE (TRUE by default)}
+\item{...}{- Other parameters:
+\itemize{
+\item logfold - TRUE if fold values are presented in log scale, otherwise is FALSE
+}}
 }
 \value{
 - object of GeneGroups class
