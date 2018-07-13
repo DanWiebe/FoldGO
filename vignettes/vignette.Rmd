@@ -98,7 +98,7 @@ To annotate our gene groups we will use FuncAnnotGroupsTopGO function which uses
 
 ```{r annot, warning = FALSE, message = FALSE, eval = FALSE}
 library(topGO)
-annotobj <- FuncAnnotGroupsTopGO(genegroups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
+up_annotobj <- FuncAnnotGroupsTopGO(genegroups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
 ```
 
 #### Using annotaions from Bioconductor packages
@@ -107,14 +107,14 @@ Another possibility is to use bioconductor packages containing annotations for s
 
 ```{r human_annot, warning = FALSE, message = FALSE, eval = FALSE}
 up_groups <- GeneGroups(degenes_hum, quannumber=6)
-annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
+up_annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
 ```
 
 ### Testing for fold-specificity
 
 The fold-specificity recognition procedure consists of GO terms preselection from DEGs annotation and fold-change-specific enrichment analysis. At each step the FDR threshold must be established. By default FDR threshold for GO terms preselection (fdrstep1) is set to 1 (no preselection) and FDR threshold for fold-change-specific enrichment analysis (fdrstep2) is set to 0.05. As a default method for mutltiple testing correction FoldGO uses Benjamini-Hochberg correction procedure^[Benjamini, Y., Hochberg, Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society - 1995 - Series B. 57 (1): 289–300]. 
 
-```{r fs_test}
+```{r fs_test, eval=FALSE}
 up_fsobj <- FoldSpecTest(up_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 down_fsobj <- FoldSpecTest(down_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 ```
