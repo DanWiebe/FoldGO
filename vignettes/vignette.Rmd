@@ -63,15 +63,14 @@ At the next step we will conduct functional enrichment analysis of generated gro
 
 #### Custom annotaion
 
-For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. 
-```{r gafread, warning = FALSE, message = FALSE}
-gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO")
+For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. It takes only one argument: file - full path to GAF file.
+```{r gafread, eval=FALSE}
 gaf <- GAFReader(file = gaf_path)
 ```
 
 One can retrieve direct annotations with some meta information and version of GAF file using following methods:
 
-```{r gaf_getters chunk 1, warning = FALSE, message = FALSE}
+```{r gaf_getters chunk 1, eval = FALSE}
 getVersion(gaf)
 ```
 
@@ -81,7 +80,7 @@ getAnnotation(gaf)
 
 and retrieve direct annotations as list object:
 
-```{r converttolist, warning = FALSE, message = FALSE}
+```{r converttolist, eval = FALSE}
 gaf_list <- convertToList(gaf)
 ```
 
@@ -96,16 +95,24 @@ To annotate our gene groups we will use FuncAnnotGroupsTopGO function which uses
 * annot - functions used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term. Here it must be assigned with topGO::annFUN.GO2genes
 * bggenes - vector contains background set of genes
 
-```{r annot, warning = FALSE, message = FALSE, eval = FALSE}
+```{r annot, eval = FALSE}
 library(topGO)
 up_annotobj <- FuncAnnotGroupsTopGO(genegroups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
 ```
 
 #### Using annotaions from Bioconductor packages
 
-Another possibility is to use bioconductor packages containing annotations for specific organism. For example "org.Hs.eg.db" (Human) and "org.Mm.eg.db" (Mouse), package name must be assigned to `mapping` argument. In this case one has to assign `topGO::annFUN.org` to `annot` argument and specify `ID` (from topGO package manual: character string specifing the gene identifier to use). Currently only the following identifiers can be used: `c("entrez", "genbank", "alias", "ensembl", "symbol", "genename", "unigene")`.  
+Another possibility is to use bioconductor packages containing annotations for specific organism. For example "org.Hs.eg.db" (Human) and "org.At.tair.db" (Arabidopsis), package name must be assigned to `mapping` argument. In this case one has to assign `topGO::annFUN.org` to `annot` argument and specify `ID` (from topGO package manual: character string specifing the gene identifier to use). Currently only the following identifiers can be used: `c("entrez", "genbank", "alias", "ensembl", "symbol", "genename", "unigene")`. 
 
-```{r human_annot, warning = FALSE, message = FALSE, eval = FALSE}
+Enrichment analysis with Arabidopsis annotations:
+
+```{r ara_annot, eval = FALSE}
+up_annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.At.tair.db", annot = topGO::annFUN.org, ID = "genename", bggenes = bggenes)
+```
+
+Enrichment analysis with annotations for Human:
+
+```{r human_annot, eval = FALSE}
 up_groups <- GeneGroups(degenes_hum, quannumber=6)
 up_annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
 ```
@@ -114,7 +121,7 @@ up_annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", an
 
 The fold-specificity recognition procedure consists of GO terms preselection from DEGs annotation and fold-change-specific enrichment analysis. At each step the FDR threshold must be established. By default FDR threshold for GO terms preselection (fdrstep1) is set to 1 (no preselection) and FDR threshold for fold-change-specific enrichment analysis (fdrstep2) is set to 0.05. As a default method for mutltiple testing correction FoldGO uses Benjamini-Hochberg correction procedure^[Benjamini, Y., Hochberg, Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society - 1995 - Series B. 57 (1): 289–300]. 
 
-```{r fs_test, eval=FALSE}
+```{r fs_test, warning = FALSE, message = FALSE,}
 up_fsobj <- FoldSpecTest(up_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 down_fsobj <- FoldSpecTest(down_annotobj, fdrstep1 = 0.05, fdrstep2 = 0.01)
 ```
