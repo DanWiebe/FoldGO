@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 devtools::load_all(".")
 library(kableExtra)
+library(topGO)
 ```
 
 A typical scenario of transcriptome data analysis is identification of differentially expressed genes (DEGs), those with significant changes in the number of transcripts (fold-change), and functional enrichment analysis of DEGs lists using Gene Ontology. Classical gene set enrichment analysis ignores the difference in the fold-changes that lead to the loss of valuable information. The FoldGO method has been created to identify the GO terms significantly overrepresented for the genes responded to the factor within a narrow fold-change-interval. FoldGO processes the DEGs list in three steps:
@@ -64,23 +65,24 @@ At the next step we will conduct functional enrichment analysis of generated gro
 #### Custom annotaion
 
 For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. It takes only one argument: file - full path to GAF file.
-```{r gafread, eval=FALSE}
+```{r gafread, warning = FALSE, message = FALSE}
+gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO")
 gaf <- GAFReader(file = gaf_path)
 ```
 
 One can retrieve direct annotations with some meta information and version of GAF file using following methods:
 
-```{r gaf_getters chunk 1, eval = FALSE}
+```{r gaf_getters chunk 1, warning = FALSE, message = FALSE}
 getVersion(gaf)
 ```
 
-```{r gaf_getters chunk 2, eval = FALSE}
+```{r gaf_getters chunk 2, warning = FALSE, message = FALSE, results='hide'}
 getAnnotation(gaf)
 ```
 
 and retrieve direct annotations as list object:
 
-```{r converttolist, eval = FALSE}
+```{r converttolist, warning = FALSE, message = FALSE}
 gaf_list <- convertToList(gaf)
 ```
 
@@ -96,7 +98,6 @@ To annotate our gene groups we will use FuncAnnotGroupsTopGO function which uses
 * bggenes - vector contains background set of genes
 
 ```{r annot, eval = FALSE}
-library(topGO)
 up_annotobj <- FuncAnnotGroupsTopGO(genegroups = up_groups, namespace = "MF", GO2genes = gaf_list, annot = topGO::annFUN.GO2genes, bggenes = bggenes)
 ```
 
@@ -112,9 +113,9 @@ up_annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.At.tair.db", 
 
 Enrichment analysis with annotations for Human:
 
-```{r human_annot, eval = FALSE}
+```{r human_annot, warning = FALSE, message = FALSE, results='hide'}
 up_groups <- GeneGroups(degenes_hum, quannumber=6)
-up_annotobj <- FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
+FuncAnnotGroupsTopGO(up_groups,"MF", mapping = "org.Hs.eg.db", annot = topGO::annFUN.org, ID = "ensembl", bggenes = bggenes_hum)
 ```
 
 ### Testing for fold-specificity
