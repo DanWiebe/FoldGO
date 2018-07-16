@@ -7,7 +7,7 @@ Maintainer: Daniil Wiebe <daniil.wiebe@gmail.com>
 Description: R package for fold-specific functional annotation.
     Allows to annotate gene sets derived from expression experiments 
     separating them in to quantiles and recognize fold-specific GO terms
-Depends: R (>= 3.4.4)
+Depends: R (>= 3.5)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
