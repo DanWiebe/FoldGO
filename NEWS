@@ -1,3 +1,8 @@
+Changes in version 0.99.4 (2018-07-16)
++ Vignettes update: less chunks with eval=FALSE
++ /data added to .Rbuildignore
++ R version dependency changed from version 3.4.4 to 3.5
+-------------------------------------------------
 Changes in version 0.99.3 (2018-07-13)
 + Vignettes update
 + Bugs with documentation fixed
