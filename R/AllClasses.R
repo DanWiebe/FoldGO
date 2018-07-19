@@ -48,6 +48,7 @@ setClass(
 #'              otherwise it must be set to FALSE value (TRUE by default) as parameters.
 #' @return - object of GeneGroups class
 #' @export
+#' @importFrom methods new
 #'
 #' @examples
 #' GeneGroups(degenes, 6)
@@ -176,9 +177,12 @@ setClass(
 #'              For more details see Arguments section.
 #' @return - object of FuncAnnotGroupsTopGO class
 #' @import topGO
+#' @importFrom methods new
+#' @importFrom stats p.adjust
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(topGO)
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
 #'                          package = "FoldGO", mustWork = TRUE)
@@ -188,6 +192,7 @@ setClass(
 #'                                  annot = topGO::annFUN.GO2genes,
 #'                                  bggenes = bggenes, padjmethod = "BH",
 #'                                  qitborder = 10, genesannot = 1)
+#'}
 FuncAnnotGroupsTopGO <- function(genegroups, namespace, ...) {
 
   if (!requireNamespace("topGO", quietly = TRUE)) {
@@ -255,6 +260,7 @@ setClass(
 #'
 #' @return - object of GAFReader class
 #' @export
+#' @importFrom methods new
 #'
 #' @examples
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
@@ -346,6 +352,7 @@ setClass(
 #'              as a minimal set of input parameters. For more details see Arguments section.
 #' @return object of FoldSpecTest class
 #' @export
+#' @importFrom methods new
 #'
 #' @examples
 #' FoldSpecTest(up_annotobj)

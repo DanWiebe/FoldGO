@@ -8,16 +8,7 @@
 #' @export
 #'
 #' @examples
-#' library(topGO)
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
-#' gaf_list <- convertToList(gaf)
-#' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
-#'                                  annot = topGO::annFUN.GO2genes,
-#'                                  bggenes = bggenes, padjmethod = "BH",
-#'                                  qitborder = 10, genesannot = 1)
-#' getResultList(annotobj)
+#' getResultList(up_annotobj)
 setGeneric(name = "getResultList",
            def = function(object){
              standardGeneric("getResultList")

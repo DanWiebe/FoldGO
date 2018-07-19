@@ -17,6 +17,8 @@ setMethod(
 #'
 #' @param object - object of FuncAnnotGroupsTopGO class
 #' @return - object of FuncAnnotGroupsTopGO class
+#' @importFrom methods new
+#' @importFrom stats p.adjust
 #'
 #'
 setMethod(

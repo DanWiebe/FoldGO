@@ -31,6 +31,7 @@ Constructor function that creates object of FuncAnnotGroupsTopGO class.
              For more details see Arguments section.
 }
 \examples{
+\dontrun{
 library(topGO)
 gaf_path <- system.file("extdata", "gene_association.tair.lzma",
                          package = "FoldGO", mustWork = TRUE)
@@ -40,4 +41,5 @@ annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
                                  annot = topGO::annFUN.GO2genes,
                                  bggenes = bggenes, padjmethod = "BH",
                                  qitborder = 10, genesannot = 1)
+}
 }

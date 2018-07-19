@@ -4,9 +4,8 @@ Title: Package for Fold-specific GO Terms Recognition
 Version: 0.99.5
 Author: Daniil Wiebe <daniil.wiebe@gmail.com> [aut, cre]
 Maintainer: Daniil Wiebe <daniil.wiebe@gmail.com>
-Description: R package for fold-specific functional annotation.
-    Allows to annotate gene sets derived from expression experiments 
-    separating them in to quantiles and recognize fold-specific GO terms
+Description: FoldGO is a package designed to annotate gene sets derived from 
+    expression experiments and identify fold-change-specific GO terms.
 Depends: R (>= 3.5)
 License: GPL-3
 Encoding: UTF-8
@@ -20,4 +19,6 @@ Suggests: knitr,
 VignetteBuilder: knitr
 Imports: topGO (>= 2.30.1), 
     ggplot2 (>= 2.2.1), 
-    tidyr (>= 0.8.0)
+    tidyr (>= 0.8.0),
+    stats,
+    methods
