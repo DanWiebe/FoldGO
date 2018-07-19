@@ -55,12 +55,6 @@ setMethod(
     df <- t(sapply(lines, function(x) strsplit(x, "\t")[[1]]))
     df <- as.data.frame(df, stringsAsFactors = FALSE)
     rownames(df) <- NULL
-    colnames(df) <- c("DB", "DB_Object_ID", "DB_Object_Symbol",
-                      "Qualifier", "GO_ID", "DB:Reference",
-                      "Evidence_Code", "With_(or)_From", "Aspect",
-                      "DB_Object_Name", "DB_Object_Synonym", "DB_Object_Type",
-                      "Taxon", "Date", "Assigned_By",
-                      "Annotation_Extension", "Gene_Product_Form_ID")
     object@annotation <- df
     return(object)
   }
@@ -80,8 +74,8 @@ setMethod(
     data <- object@annotation
     annotdf <-
       data.frame(
-        "GOID" = data$GO_ID,
-        "GeneID" = data$DB_Object_Name,
+        "GOID" = data[, 5],
+        "GeneID" = data[, 10],
         stringsAsFactors = FALSE
       )
     # convert data frame to list with GO term id's as keys
