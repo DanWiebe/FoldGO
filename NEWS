@@ -1,3 +1,7 @@
+Changes in version 0.99.7 (2018-07-19)
++ Argument specifying column with Gene IDs added to GAFReader class
++ Example gaf file truncated (don't use it for real analysis!)
+-------------------------------------------------
 Changes in version 0.99.6 (2018-07-19)
 + Malformed description filed problem fixed
 + Imports for stats and methods packages added
