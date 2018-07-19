@@ -39,7 +39,7 @@ setGeneric(name = "runFuncAnnotTest",
 #' @examples
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
 #'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 #' getVersion(gaf)
 setGeneric(name = "getVersion",
            def = function(object){
@@ -56,7 +56,7 @@ setGeneric(name = "getVersion",
 #' @examples
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
 #'                           package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 #' getAnnotation(gaf)
 setGeneric(name = "getAnnotation",
            def = function(object){
@@ -84,7 +84,7 @@ setGeneric(name = "read",
 #' @examples
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
 #'                           package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 #' convertToList(gaf)
 setGeneric(name = "convertToList",
            def = function(object){

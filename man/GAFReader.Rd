@@ -4,10 +4,15 @@
 \alias{GAFReader}
 \title{Constructor for GAFReader S4 class}
 \usage{
-GAFReader(file)
+GAFReader(file, ...)
 }
 \arguments{
 \item{file}{- full path to annotation file}
+
+\item{...}{- Other parameters:
+\itemize{
+\item geneid_col - index of column with Gene ID (2 by default)
+}}
 }
 \value{
 - object of GAFReader class
@@ -19,5 +24,5 @@ Constructor function that creates object of GAFReader class.
 \examples{
 gaf_path <- system.file("extdata", "gene_association.tair.lzma",
                          package = "FoldGO", mustWork = TRUE)
-gaf <- GAFReader(file = gaf_path)
+gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 }

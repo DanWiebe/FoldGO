@@ -186,7 +186,7 @@ setClass(
 #' library(topGO)
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
 #'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 #' gaf_list <- convertToList(gaf)
 #' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
 #'                                  annot = topGO::annFUN.GO2genes,
@@ -237,6 +237,7 @@ setClass(
 #'
 #' @slot version character. - version of GAF file
 #' @slot info character. - information from GAF file header
+#' @slot geneid_col numeric. - index of column with Gene ID (2 by default)
 #'
 setClass(
 
@@ -244,7 +245,12 @@ setClass(
 
   slots = c(
     version = "character",
-    info = "character"
+    info = "character",
+    geneid_col = "numeric"
+  ),
+
+  prototype = list(
+    geneid_col = 2
   ),
 
   contains = "AnnotationReader"
@@ -254,6 +260,10 @@ setClass(
 #' Constructor for GAFReader S4 class
 #'
 #' @param file - full path to annotation file
+#' @param ... - Other parameters:
+#' \itemize{
+#' \item geneid_col - index of column with Gene ID (2 by default)
+#' }
 #'
 #' @description Constructor function that creates object of GAFReader class.
 #'              As a parameter it takes full path to file of GAF format.
@@ -265,11 +275,12 @@ setClass(
 #' @examples
 #' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
 #'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path)
-GAFReader <- function(file) {
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
+GAFReader <- function(file, ...) {
   obj <- new(
     "GAFReader",
-    file = file
+    file = file,
+    ...
   )
   return(read(obj))
 }

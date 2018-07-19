@@ -13,5 +13,7 @@ S4 class for GAFReader object
 \item{\code{version}}{character. - version of GAF file}
 
 \item{\code{info}}{character. - information from GAF file header}
+
+\item{\code{geneid_col}}{numeric. - index of column with Gene ID (2 by default)}
 }}
 

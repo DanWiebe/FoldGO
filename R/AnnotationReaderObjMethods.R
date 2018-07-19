@@ -75,7 +75,7 @@ setMethod(
     annotdf <-
       data.frame(
         "GOID" = data[, 5],
-        "GeneID" = data[, 2],
+        "GeneID" = data[, object@geneid_col],
         stringsAsFactors = FALSE
       )
     # convert data frame to list with GO term id's as keys

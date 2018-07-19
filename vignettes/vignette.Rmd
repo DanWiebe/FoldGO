@@ -64,10 +64,16 @@ At the next step we will conduct functional enrichment analysis of generated gro
 
 #### Custom annotaion
 
-For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. It takes only one argument: file - full path to GAF file.
+For custom annotation one has to provide GO id -> Gene id list. One of the common formats for gene annotation is GAF. FoldGO provides simple and convinient parser for annotation presented in GAF format. It takes only two arguments: 
+
+* file - full path to GAF file.
+* geneid_col - index of column with Genes IDs
+
+NOTE: The GAF file in example is truncated. The original full file can be downloaded from GO consortium website: <http://www.geneontology.org/page/download-go-annotations>.
+
 ```{r gafread, warning = FALSE, message = FALSE}
 gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO")
-gaf <- GAFReader(file = gaf_path)
+gaf <- GAFReader(file = gaf_path,  geneid_col = 10)
 ```
 
 One can retrieve direct annotations with some meta information and version of GAF file using following methods:

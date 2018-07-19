@@ -35,7 +35,7 @@ Constructor function that creates object of FuncAnnotGroupsTopGO class.
 library(topGO)
 gaf_path <- system.file("extdata", "gene_association.tair.lzma",
                          package = "FoldGO", mustWork = TRUE)
-gaf <- GAFReader(file = gaf_path)
+gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 gaf_list <- convertToList(gaf)
 annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
                                  annot = topGO::annFUN.GO2genes,
