@@ -1,3 +1,7 @@
+Changes in version 0.99.6 (2018-07-19)
++ Malformed description filed problem fixed
++ Imports for stats and methods packages added
+-------------------------------------------------
 Changes in version 0.99.5 (2018-07-16)
 + R version dependency changed from version 3.4.4 to 3.5
 -------------------------------------------------
