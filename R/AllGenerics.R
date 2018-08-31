@@ -29,11 +29,11 @@ setGeneric(name = "runFuncAnnotTest",
 
 # AnnotationReader object
 #--------------------GETTERS-------------------
-#' Get version of GAF file
+#' Get version of instance
 #'
-#' @param object - Object of GAFReader class
+#' @param object - Object of S4 class
 #'
-#' @return - version of GAF file
+#' @return - version of instance
 #' @export
 #'
 #' @examples
@@ -46,7 +46,7 @@ setGeneric(name = "getVersion",
              standardGeneric("getVersion")
            }
 )
-#' Get annotation from GAF file
+#' Get annotation derived from annotation file
 #'
 #' @param object - Object that is instance of subclass of AnnotationReader class
 #'
@@ -65,19 +65,19 @@ setGeneric(name = "getAnnotation",
 )
 
 #----------------------------------------------
-#' Read GAF file
+#' Read annotation file
 #'
-#' @param object - Object of GAFReader class
-#' @return - object of GAFReader class
+#' @param object - object that is instance of subclass of AnnotationReader class (e.g. GAFReader class)
+#' @return - instance of subclass of AnnotationReader class
 #'
 setGeneric(name = "read",
            def = function(object){
              standardGeneric("read")
            }
 )
-#' Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
+#' Convert annotation to list contains GO term id's as keys and Gene ID's as values
 #'
-#' @param object - object of GAFReader class
+#' @param object - object that is instance of subclass of AnnotationReader class (e.g. GAFReader class)
 #'
 #' @return - list with GO term id's as keys and Gene ID's as values
 #' @export

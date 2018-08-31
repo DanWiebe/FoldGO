@@ -1,9 +1,5 @@
 #--------------------GETTERS-------------------
-#' Accessor method for list of functional annotation result tables
-#'
-#' @param object - object of FuncAnnotGroups class
-#'
-#' @return - list with filenames as keys and annotaton data frames as values
+#' @describeIn getResultList Accessor method for list of functional annotation result tables
 #' @export
 setMethod(
   f = "getResultList",
@@ -13,14 +9,7 @@ setMethod(
   }
 )
 #----------------------------------------------
-#' Functional annotation test
-#'
-#' @param object - object of FuncAnnotGroupsTopGO class
-#' @return - object of FuncAnnotGroupsTopGO class
-#' @importFrom methods new
-#' @importFrom stats p.adjust
-#'
-#'
+#' @describeIn runFuncAnnotTest Functional annotation test
 setMethod(
   f = "runFuncAnnotTest",
   signature = "FuncAnnotGroupsTopGO",

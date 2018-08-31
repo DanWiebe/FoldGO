@@ -1,9 +1,5 @@
 #--------------------GETTERS-------------------
-#' Get version of GAF file
-#'
-#' @param object - Object of GAFReader class
-#'
-#' @return - version of GAF file
+#' @describeIn getVersion Get version of GAF file
 #' @export
 setMethod(
   f = "getVersion",
@@ -13,11 +9,7 @@ setMethod(
   }
 )
 
-#' Get annotation from GAF file
-#'
-#' @param object - Object that is instance of subclass of AnnotationReader class
-#'
-#' @return - dataframe contains annotation
+#' @describeIn getAnnotation Get annotation from GAF file
 #' @export
 setMethod(
   f = "getAnnotation",
@@ -29,11 +21,7 @@ setMethod(
 
 #----------------------------------------------
 
-#' Read GAF file
-#'
-#' @param object - Object of GAFReader class
-#' @return - object of GAFReader class
-#'
+#' @describeIn read Read GAF file
 setMethod(
   f = "read",
   signature = "GAFReader",
@@ -60,11 +48,7 @@ setMethod(
   }
 )
 
-#' Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
-#'
-#' @param object - object of GAFReader class
-#'
-#' @return - list with GO term id's as keys and Gene ID's as values
+#' @describeIn convertToList Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
 #' @export
 setMethod(
   f = "convertToList",

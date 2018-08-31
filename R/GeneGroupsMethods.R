@@ -1,9 +1,6 @@
 #--------------------GETTERS-------------------
-#' Get list of gene sets for each quatile and all combinations
-#'
-#' @param object - Object of GeneGroups class
-#'
-#' @return - list of gene sets for each quatile and all combinations
+#' @describeIn getGroups Get list of gene sets for each
+#' quatile and all combinations
 #' @export
 setMethod(f = "getGroups",
           signature = "GeneGroups",
@@ -12,11 +9,7 @@ setMethod(f = "getGroups",
           }
 )
 
-#' Get number of quantiles
-#'
-#' @param object - Object of GeneGroups class
-#'
-#' @return - number of quantiles
+#' @describeIn getQuanNumber Get number of quantiles
 #' @export
 setMethod(f = "getQuanNumber",
           signature = "GeneGroups",
@@ -25,11 +18,7 @@ setMethod(f = "getQuanNumber",
           }
 )
 
-#' Get vector of intervals names
-#'
-#' @param object - Object of GeneGroups class
-#'
-#' @return - vector of intervals names
+#' @describeIn getIntNames Get vector of intervals names
 #' @export
 setMethod(f = "getIntNames",
           signature = "GeneGroups",
@@ -38,11 +27,8 @@ setMethod(f = "getIntNames",
           }
 )
 
-#' Get name of the interval containing all differentially expressed genes
-#'
-#' @param object - Object of GeneGroups class
-#'
-#' @return - name of the interval containing all differentially expressed genes
+#' @describeIn getWholeIntName Get name of the interval
+#' containing all differentially expressed genes
 #' @export
 setMethod(f = "getWholeIntName",
           signature = "GeneGroups",
@@ -51,11 +37,7 @@ setMethod(f = "getWholeIntName",
           }
 )
 
-#' Get regulation type
-#'
-#' @param object - Object of GeneGroups class
-#'
-#' @return - regulation type (up or down)
+#' @describeIn getRegType Get regulation type
 #' @export
 setMethod(f = "getRegType",
           signature = "GeneGroups",
@@ -64,11 +46,8 @@ setMethod(f = "getRegType",
           }
 )
 #----------------------------------------------
-#' Divide initial set of genes in to quantiles
-#'
-#' @param object - Object of GeneGroups class
-#' @return object of GeneGroups class
-#'
+
+#' @describeIn divToGroups Divide initial set of genes in to quantiles
 setMethod(f = "divToGroups",
           signature = "GeneGroups",
           definition = function(object){

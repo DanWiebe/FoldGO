@@ -1,9 +1,5 @@
 #--------------------GETTERS-------------------
-#' Get dataframe with fold-change-specific terms
-#'
-#' @param object - Object of FoldSpecTest class
-#'
-#' @return - dataframe with fold-specific GO terms data
+#' @describeIn getFStable Get dataframe with fold-change-specific terms
 #' @export
 setMethod(f = "getFStable",
           signature = "FoldSpecTest",
@@ -12,11 +8,7 @@ setMethod(f = "getFStable",
           }
 )
 
-#' Get dataframe with not fold-change-specific terms
-#'
-#' @param object - Object of FoldSpecTest class
-#'
-#' @return - dataframe with not fold-specific GO terms data
+#' @describeIn getNFStable Get dataframe with not fold-change-specific terms
 #' @export
 setMethod(f = "getNFStable",
           signature = "FoldSpecTest",
@@ -25,12 +17,8 @@ setMethod(f = "getNFStable",
           }
 )
 
-#' Get dataframe with both fold-change-specific
+#' @describeIn getResultTable Get dataframe with both fold-change-specific
 #' and not fold-change-specific terms
-#'
-#' @param object - Object of FoldSpecTest class
-#'
-#' @return - table contains all GO terms and related data
 #' @export
 setMethod(f = "getResultTable",
           signature = "FoldSpecTest",
@@ -38,11 +26,8 @@ setMethod(f = "getResultTable",
             return(object@result_table)
           }
 )
-#' Get name of largest fold-change interval (DEG interval)
-#'
-#' @param object - Object of FoldSpecTest class
-#'
-#' @return - name of the interval containing all differentially expressed genes
+
+#' @describeIn getWholeIntName Get name of largest fold-change interval (DEG interval)
 #' @export
 setMethod(f = "getWholeIntName",
           signature = "FoldSpecTest",
@@ -51,13 +36,8 @@ setMethod(f = "getWholeIntName",
           }
 )
 #----------------------------------------------
-#' Find fold-change-specific terms
-#'
-#' @param object - Object of FoldSpecTest class
-#' @param fdrstep2 - FDR threshold for 2 step of fold-specificty recognition procedure
-#'
-#' @return object of FoldSpecTest class
-#'
+
+#' @describeIn findFSterms Find fold-change-specific terms
 setMethod(f = "findFSterms",
           signature = "FoldSpecTest",
           definition = function(object, fdrstep2 = NULL){
@@ -87,12 +67,8 @@ setMethod(f = "findFSterms",
 )
 
 
-#' Run enrichment analysis
-#'
-#' @param object - Object of FoldSpecTest class
-#'
-#' @return object of FoldSpecTest class
-#'
+
+#' @describeIn calcFSsignificance Run enrichment analysis
 setMethod(f = "calcFSsignificance",
           signature = "FoldSpecTest",
           definition = function(object){

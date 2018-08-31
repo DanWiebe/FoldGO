@@ -3,7 +3,7 @@
 \docType{data}
 \name{rna_seq_data}
 \alias{rna_seq_data}
-\title{data from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots}
+\title{Data from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots}
 \format{A data frame with 18039 rows and 4 variables:
 \describe{
   \item{GeneID}{Gene identifier}

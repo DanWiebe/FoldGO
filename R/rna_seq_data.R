@@ -1,4 +1,4 @@
-#' data from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots
+#' Data from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots
 #'
 #' A dataset containing the GeneIDs and corresponding fold-change values.
 #'
