@@ -6,7 +6,7 @@
 \alias{getWholeIntName}
 \alias{getWholeIntName,FoldSpecTest-method}
 \alias{getWholeIntName,GeneGroups-method}
-\title{Get name of the interval containing all differentially expressed genes}
+\title{getWholeIntName S4 method}
 \usage{
 getWholeIntName(object)
 
@@ -15,25 +15,21 @@ getWholeIntName(object)
 \S4method{getWholeIntName}{GeneGroups}(object)
 }
 \arguments{
-\item{object}{- Object of GeneGroups or FoldSpecTest class}
-}
-\value{
-- name of the interval containing all differentially expressed genes
+\item{object}{Object of GeneGroups or FoldSpecTest class}
 }
 \description{
-Get name of the interval containing all differentially expressed genes
+This method returns name of the interval containing
+all differentially expressed genes. It can be applied to objects of
+GeneGroups and FoldSpecTest classes
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{FoldSpecTest}: Get name of largest fold-change interval (DEG interval)
-
-\item \code{GeneGroups}: Get name of the interval
-containing all differentially expressed genes
-}}
-
 \examples{
+# GeneGroups class object example
 gene_groups <- GeneGroups(degenes, 6)
 getWholeIntName(gene_groups)
+# FoldSpecTest class object example
 fs_up <- FoldSpecTest(up_annotobj)
 getWholeIntName(fs_up)
+}
+\seealso{
+\code{\link{FoldSpecTest()}} \code{\link{GeneGroups()}}
 }

@@ -1,5 +1,6 @@
 #--------------------GETTERS-------------------
-#' @describeIn getFStable Get dataframe with fold-change-specific terms
+# Get dataframe with fold-change-specific terms
+#' @rdname foldspectest_class
 #' @export
 setMethod(f = "getFStable",
           signature = "FoldSpecTest",
@@ -8,7 +9,8 @@ setMethod(f = "getFStable",
           }
 )
 
-#' @describeIn getNFStable Get dataframe with not fold-change-specific terms
+# Get dataframe with not fold-change-specific terms
+#' @rdname foldspectest_class
 #' @export
 setMethod(f = "getNFStable",
           signature = "FoldSpecTest",
@@ -16,9 +18,9 @@ setMethod(f = "getNFStable",
             return(object@nfstable)
           }
 )
-
-#' @describeIn getResultTable Get dataframe with both fold-change-specific
-#' and not fold-change-specific terms
+# Get dataframe with both fold-change-specific
+# and not fold-change-specific terms
+#' @rdname foldspectest_class
 #' @export
 setMethod(f = "getResultTable",
           signature = "FoldSpecTest",
@@ -27,7 +29,8 @@ setMethod(f = "getResultTable",
           }
 )
 
-#' @describeIn getWholeIntName Get name of largest fold-change interval (DEG interval)
+# Get name of largest fold-change interval (DEG interval)
+#' @rdname getWholeIntName
 #' @export
 setMethod(f = "getWholeIntName",
           signature = "FoldSpecTest",
@@ -37,7 +40,7 @@ setMethod(f = "getWholeIntName",
 )
 #----------------------------------------------
 
-#' @describeIn findFSterms Find fold-change-specific terms
+# Find fold-change-specific terms
 setMethod(f = "findFSterms",
           signature = "FoldSpecTest",
           definition = function(object, fdrstep2 = NULL){
@@ -68,7 +71,7 @@ setMethod(f = "findFSterms",
 
 
 
-#' @describeIn calcFSsignificance Run enrichment analysis
+# Run enrichment analysis
 setMethod(f = "calcFSsignificance",
           signature = "FoldSpecTest",
           definition = function(object){

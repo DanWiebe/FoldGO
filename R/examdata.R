@@ -11,6 +11,9 @@
 #' \item A. thaliana and auxin: \url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE97258}
 #' \item H. sapiens LNCap AR-V7: \url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE71334}
 #' }
+#' @examples
+#' # load background genes from A. thaliana RNA-seq experiment
+#' load(bggenes)
 #' @format A vector containing the GeneIDs with 18039 and 38238 for A. thaliana and H. sapiens correspondingly
 #' @name examdata_bg
 NULL
@@ -29,7 +32,13 @@ NULL
 #' \item{up_annotobj}{object of FuncAnnotGroups class compiled from lists of down-regulated genes
 #' from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots}
 #' }
-#'
+#' @examples
+#' # load GeneGroups object with up-regulated genes from rna-seq experiment on auxin treatment
+#' # of Arabidopsis thaliana roots
+#' load(up_groups)
+#' # load FuncAnnotGroups object compiled from lists of up-regulated genes
+#' # from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots
+#' load(up_annotobj)
 #' @format
 #' \describe{
 #' \item{up_groups}{object of GeneGroups class}
@@ -54,6 +63,9 @@ NULL
 #' \item A. thaliana and auxin: \url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE97258}
 #' \item H. sapiens LNCap AR-V7: \url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE71334}
 #' }
+#' @examples
+#' # load degenes from RNA-seq experiment on auxin treatment of Arabidopsis thaliana roots
+#' load(degenes)
 #' @format A dataframes with 4 variables and 789 and 2079 for A. thaliana and H. sapiens correspondingly,
 #' where colnames are:
 #' \describe{

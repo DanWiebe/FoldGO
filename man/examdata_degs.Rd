@@ -33,4 +33,8 @@ We used two datasets in examples:
 the wild-type androgen receptor (AR-WT) or the ligand-independent AR-V7 splice variant (degenes_hum)
 }
 }
+\examples{
+# load degenes from RNA-seq experiment on auxin treatment of Arabidopsis thaliana roots
+load(degenes)
+}
 \keyword{datasets}

@@ -1,17 +1,45 @@
 #-------------------------GeneGroupsObject---------------------------
 
 #' S4 class for Gene Groups
+#' @name genegroups_class
 #'
-#' @slot inputtable data.frame. - dataframe contains initial set of genes gene ID's in the first row
-#'             and corresponding fold change values in the second row
-#' @slot logfold logical. - TRUE if fold values are presented in log scale, otherwise is FALSE
-#' @slot quannumber numeric. - number of quantiles (e.g. 2,3,4...)
-#' @slot groups list. - list of gene sets for each quatile and all combinations
-#' @slot intnames character. - vector of intervals names
-#' @slot wholeintname character. - name of the interval containing all differentially expressed genes
-#' @slot regtype character. - regulation type (up or down)
+#' @description This function splits gene list into quantiles and generates all unions of neighbouring quantiles.
+#'              It takes dataframe with genes ID's and fold values, number of quantiles
+#'              and logical variable which must set to TRUE if fold values are presented in logarithmic scale,
+#'              otherwise it must be set to FALSE value (TRUE by default) as parameters.
 #'
-#'
+#' @section Constructor:
+#' \code{GeneGroups(inputtable, quannumber, logfold)}, where:
+#' \describe{
+#' \item{}{\code{inputtable} - dataframe contains initial set of genes gene ID's in the first row
+#'             and corresponding fold change values in the second row}
+#' \item{}{\code{quannumber} - number of quantiles (e.g. 2,3,4...)}
+#' \item{}{\code{logfold} - TRUE if fold values are presented in log scale, otherwise is FALSE}
+#' }
+#' @section Accessors:
+#' In the code examples below \code{object} is an object of GeneGroups class
+#' \describe{
+#' \item{}{\code{getGroups(object)} - returns list of gene sets for each
+#' quatile and all combinations}
+#' \item{}{\code{getWholeIntName(object)} - returns name of the interval
+#' containing all differentially expressed genes}
+#' \item{}{\code{getQuanNumber(object)} - returns number of quantiles}
+#' \item{}{\code{getIntNames(object)} - returns vector of intervals names}
+#' \item{}{\code{getRegType(object)} - returns regulation type}
+#' }
+#' @examples
+#' # split initial gene set into quantiles
+#' gene_groups <- GeneGroups(degenes, 6)
+#' # get list of gene sets for each quatile and all combinations
+#' getGroups(gene_groups)
+#' # get name of the interval containing all differentially expressed genes
+#' getWholeIntName(gene_groups)
+#' # get number of quantiles
+#' getQuanNumber(gene_groups)
+#' # get vector of intervals names
+#' getIntNames(gene_groups)
+#' # get regulation type
+#' getRegType(gene_groups)
 setClass(
 
   "GeneGroups",
@@ -32,28 +60,10 @@ setClass(
 
 )
 
-#' Constructor for GeneGroups S4 class
-#'
-#' @param inputtable - dataframe contains initial set of genes gene ID's in the first row
-#'             and corresponding fold change values in the second row
-#' @param quannumber - number of quantiles (e.g. 2,3,4...)
-#' @param ... - Other parameters:
-#' \itemize{
-#' \item logfold - TRUE if fold values are presented in log scale, otherwise is FALSE
-#' }
-#'
-#' @description Constructor function that creates object of GeneGroups class.
-#'              It takes dataframe with genes ID's and fold values, number of quantiles
-#'              and logical variable which must set to TRUE if fold values are presented in logarithmic scale,
-#'              otherwise it must be set to FALSE value (TRUE by default) as parameters.
-#' @return - object of GeneGroups class
+# Constructor for GeneGroups S4 class
+#' @rdname genegroups_class
 #' @export
 #' @importFrom methods new
-#'
-#' @examples
-#' GeneGroups(degenes, 6)
-#' GeneGroups(degenes, 10)
-#'
 GeneGroups <- function(inputtable, quannumber, ...) {
   obj <- new(
     "GeneGroups",
@@ -67,17 +77,16 @@ GeneGroups <- function(inputtable, quannumber, ...) {
 
 #-------------------------AnnotationObject---------------------------
 
-#' Abstract S4 class for FuncAnnotGroups object
-#'
-#' @slot genegroups GeneGroups. - object of GeneGroups class
-#' @slot bggenes character. - vector contains background set of genes
-#' @slot resultlist list. - list with filenames as keys and annotaton data frames as values
-#' @slot padjmethod character. - method for multiple testing correction (to see all possible methods print: p.adjust.methods)
-#'                        Benjamini-Hochberg by default
-#' @slot qitborder numeric. - minimal number of genes annotated to a term (1 by default)
-#' @slot wholeintname character. - name of the DEG interval (initial set of genes)
-#'
-#'
+# Abstract S4 class for FuncAnnotGroups object
+##############################PARAMS################################
+# genegroups GeneGroups. - object of GeneGroups class
+# bggenes character. - vector contains background set of genes
+# slot resultlist list. - list with filenames as keys and annotaton
+#                         data frames as values
+# slot padjmethod character. - method for multiple testing correction
+# qitborder numeric. - minimal number of genes annotated to a term
+#                      (1 by default)
+# wholeintname character. - name of the DEG interval (initial set of genes)
 setClass(
 
   "FuncAnnotGroups",
@@ -110,17 +119,56 @@ setClass(
 
 #-------------------------Annotation Object for topGO---------------------------
 #' S4 class for FuncAnnotGroupsTopGO object
+#' @name fagroupstopgo_class
+#' @description This function conducts functional enrichment analysis for sets of genes generated by
+#' \code{\link{GeneGroups}} function.
+#' @section Constructor:
+#' \code{FuncAnnotGroupsTopGO(groups, namespace, GO2genes, annot, bggenes, ...)}, where:
+#' \describe{
+#' \item{}{\code{groups} - object of \code{\link{GeneGroups}} class}
+#' \item{}{\code{namespace} - character string specifing GO namespace ("BP", "MF" or "CC")}
+#' \item{}{\code{GO2genes} - Use if \code{mapping} argument is set to "custom".Can be generated by \code{\link{GAFReader}}.
+#' From TopGO manual: named list of character vectors. The list names are GO identifiers. For each GO the character vector
+#' contains the genes identifiers which are mapped to it. Only the most specific annotations are required.}
+#' \item{}{\code{annot} - from TopGO manual: These functions are used to compile a list of GO terms such that each
+#' element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.}
+#' \item{}{\code{bggenes} - vector contains background set of genes}
+#' \item{}{ ... - other parameters:}
+#' \describe{
+#' \item{}{\code{genesannot} - minimal number of genes annotated to a term in the annotation. 1 by default}
+#' \item{}{\code{algorithm} - from TopGO manual: character string specifing which algorithm to use.
+#' The algorithms are shown by the topGO whichAlgorithms() function. "classic" by default}
+#' \item{}{\code{statistic} - from TopGO manual: character string specifing which test to use.
+#' The statistical tests are shown by the topGO whichTests() function. "fisher" by default}
+#' \item{}{\code{mapping} - from TopGO manual: character string specifieng the name of the Bioconductor package containing
+#' the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db". "custom" by default}
+#' \item{}{\code{ID} - from TopGO manual: character string specifing the gene identifier to use.
+#' Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene")}
+#' }
+#' }
+#' @section Accessors:
+#' In the code examples below \code{object} is an object of FuncAnnotGroupsTopGO class
+#' \describe{
+#' \item{}{\code{getResultList(object)} - returns list of functional annotation result tables}
+#' }
+#' @examples
+#' \dontrun{
+#' # read .gaf file (in this example gaf file with annotation for \emph{A.thaliana} is used)
+#' library(topGO)
+#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
+#'                          package = "FoldGO", mustWork = TRUE)
+#' # read gaf file and convert annoitation in the list format
+#' # contains GO term id's as keys and Gene ID's as values
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
+#' gaf_list <- convertToList(gaf)
+#' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
+#'                                  annot = topGO::annFUN.GO2genes,
+#'                                  bggenes = bggenes, padjmethod = "BH",
+#'                                  qitborder = 10, genesannot = 1)
 #'
-#' @slot namespace character. - character string specifing GO namespace ("BP", "MF" or "CC")
-#' @slot genesannot numeric. - minimal number of genes annotated to a term in the annotation
-#' @slot algorithm character. - from TopGO manual: character string specifing which algorithm to use. The algorithms are shown by the topGO whichAlgorithms() function.
-#' @slot statistic character. - from TopGO manual: character string specifing which test to use. The statistical tests are shown by the topGO whichTests() function.
-#' @slot annot function. - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
-#' @slot GO2genes list. - from TopGO manual: named list of character vectors.  The list names are GO identifiers. For each GO the character vector contains the genes identifiers which are mapped to it. Only the most specific annotations are required.
-#' @slot mapping character. - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".
-#' @slot ID character. - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene")
-#'
-#'
+#' # get results of functional enrichment analysis in a tabular form:
+#' getResultList(annotobj)
+#' }
 setClass(
 
   "FuncAnnotGroupsTopGO",
@@ -157,42 +205,12 @@ setClass(
 
 )
 
-#' Constructor for FuncAnnotGroupsTopGO S4 class
-#'
-#' @param genegroups - object of GeneGroups class
-#' @param namespace - character string specifing GO namespace ("BP", "MF" or "CC")
-#' @param ... - Other parameters:
-#' \itemize{
-#' \item genesannot - minimal number of genes annotated to a term in the annotation
-#' \item algorithm - from TopGO manual: character string specifing which algorithm to use. The algorithms are shown by the topGO whichAlgorithms() function.
-#' \item statistic - from TopGO manual: character string specifing which test to use. The statistical tests are shown by the topGO whichTests() function.
-#' \item annot - from TopGO manual: These functions are used to compile a list of GO terms such that each element in the list is a character vector containing all the gene identifiers that are mapped to the respective GO term.
-#' \item GO2genes - from TopGO manual: named list of character vectors.  The list names are genes identifiers.  For each gene the character vector contains the GO identifiers it maps to.  Only the most specific annotations are required.
-#' \item mapping - from TopGO manual: character string specifieng the name of the Bioconductor package containing the gene mappings for a specific organism. For example: mapping = "org.Hs.eg.db".
-#' \item ID - from TopGO manual: character string specifing the gene identifier to use. Currently only the following identifiers can be used: c("entrez", "genbank", "alias", "ensembl", "symbol",     "genename", "unigene").
-#' }
-#'
-#' @description Constructor function that creates object of FuncAnnotGroupsTopGO class.
-#'              It takes GeneGroups object and GO namespace ("BP", "MF" or "CC") as a minimal set of input parameters.
-#'              For more details see Arguments section.
-#' @return - object of FuncAnnotGroupsTopGO class
+# Constructor for FuncAnnotGroupsTopGO S4 class
+#' @rdname fagroupstopgo_class
 #' @import topGO
 #' @importFrom methods new
 #' @importFrom stats p.adjust
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' library(topGO)
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
-#' gaf_list <- convertToList(gaf)
-#' annotobj <- FuncAnnotGroupsTopGO(up_groups,"BP", GO2genes = gaf_list,
-#'                                  annot = topGO::annFUN.GO2genes,
-#'                                  bggenes = bggenes, padjmethod = "BH",
-#'                                  qitborder = 10, genesannot = 1)
-#'}
 FuncAnnotGroupsTopGO <- function(genegroups, namespace, ...) {
 
   if (!requireNamespace("topGO", quietly = TRUE)) {
@@ -216,11 +234,10 @@ FuncAnnotGroupsTopGO <- function(genegroups, namespace, ...) {
 #-------------------------AnnotationReaderObject---------------------
 
 #--------Abstract Reader--------------
-#'  Abstract S4 class for AnnotationReader object
-#'
-#' @slot file character. - full path to annotation file
-#' @slot annotation data.frame. - dataframe contains annotation
-#'
+#  Abstract S4 class for AnnotationReader object
+##############################PARAMS################################
+# file character. - full path to annotation file
+# annotation data.frame. - dataframe contains annotation
 setClass(
 
   "AnnotationReader",
@@ -234,11 +251,44 @@ setClass(
 
 #-------GAF format reader-------------
 #' S4 class for GAFReader object
+#' @name gafreader_class
+#' @description Parser for annotation presented in GAF file format (.gaf).
+#' GAFReader function returns object which contains as a dataframe annotation
+#' as it presented in initial file. Via GAFReader accessor method one can retrieve
+#' annotations as list GO term id's as keys and Gene ID's as values and version of file (see Accessors section).
 #'
-#' @slot version character. - version of GAF file
-#' @slot info character. - information from GAF file header
-#' @slot geneid_col numeric. - index of column with Gene ID (2 by default)
+#' @section Constructor:
+#' \code{GAFReader(file = gaf_path, geneid_col = 10)}, where:
+#' \describe{
+#' \item{}{\code{file} - full path to annotation file}
+#' \item{}{\code{geneid_col} - index of column with Gene ID (2 by default)}
+#' }
 #'
+#' @section Accessors:
+#' In the code examples below \code{object} is an object of GAFReader class
+#' \describe{
+#' \item{}{\code{getVersion(object)} - returns version of GAF file}
+#' \item{}{\code{getAnnotation(object)} - returns annotation from GAF file}
+#' }
+#' @section Methods:
+#' In the code examples below \code{object} is an object of GAFReader class
+#' \describe{
+#' \item{}{\code{convertToList(object)} - Convert GAF format type annotation to list
+#' contains GO term id's as keys and Gene ID's as values}
+#' }
+#' @examples
+#' # read .gaf file (in this example gaf file with annotation for \emph{A.thaliana} is used)
+#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
+#'                          package = "FoldGO", mustWork = TRUE)
+#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
+#' # get version of file
+#' getVersion(gaf)
+#' # get annotations in tabular format
+#' getAnnotation(gaf)
+#' # get annoitation in the list format contains GO term id's as keys and Gene ID's as values
+#' # which can be used by \code{\link{FuncAnnotGroupsTopGO}} function.
+#' #
+#' convertToList(gaf)
 setClass(
 
   "GAFReader",
@@ -257,25 +307,10 @@ setClass(
 
 )
 
-#' Constructor for GAFReader S4 class
-#'
-#' @param file - full path to annotation file
-#' @param ... - Other parameters:
-#' \itemize{
-#' \item geneid_col - index of column with Gene ID (2 by default)
-#' }
-#'
-#' @description Constructor function that creates object of GAFReader class.
-#'              As a parameter it takes full path to file of GAF format.
-#'
-#' @return - object of GAFReader class
+# GAFReader class constructor
 #' @export
 #' @importFrom methods new
-#'
-#' @examples
-#' gaf_path <- system.file("extdata", "gene_association.tair.lzma",
-#'                          package = "FoldGO", mustWork = TRUE)
-#' gaf <- GAFReader(file = gaf_path, geneid_col = 10)
+#' @rdname gafreader_class
 GAFReader <- function(file, ...) {
   obj <- new(
     "GAFReader",
@@ -296,9 +331,9 @@ GAFReader <- function(file, ...) {
 #' For more details see Constructor section.
 #'
 #' @section Constructor:
-#' \code{FoldSpecTest(annotobj, fdrstep1 = 1.0, fdrstep2 = 0.05, padjmethod = "BH", fisher_alternative = "greater")}, where:
+#' \code{FoldSpecTest(annotgroups, fdrstep1, fdrstep2, padjmethod, fisher_alternative)}, where:
 #' \describe{
-#' \item{}{\code{annotobj} - object of FuncAnnotGroups class}
+#' \item{}{\code{annotgroups} - object of FuncAnnotGroups class}
 #' \item{}{\code{fdrstep1} - FDR threshold for 1 step of fold-specificty recognition procedure}
 #' \item{}{\code{fdrstep2} - FDR threshold for 2 step of fold-specificty recognition procedure}
 #' \item{}{\code{padjmethod} - method for multiple testing correction (to see all possible methods print: p.adjust.methods)
@@ -315,9 +350,10 @@ GAFReader <- function(file, ...) {
 #' \item{}{\code{getWholeIntName(object)} - returns name of largest fold-change interval (DEGs interval)}
 #' }
 #' @examples
-#' # FoldSpecTest function requires only object of FuncAnnotGroups class as a minimal set of parameters.
-#' # In the example up_annotobj is an object of FuncAnnotGroups class compiled from lists of up-regulated genes
-#' # from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots [FoldGO::up_annotobj].
+#' # FoldSpecTest function requires only object of FuncAnnotGroups class as a
+#' # minimal set of parameters. In the example up_annotobj is an object of FuncAnnotGroups class
+#' # compiled from lists of up-regulated genes from rna-seq experiment on auxin treatment
+#' # of Arabidopsis thaliana roots [FoldGO::up_annotobj].
 #' FoldSpecTest(up_annotobj)
 #'
 #' # FoldSpecTest function with custom parameters

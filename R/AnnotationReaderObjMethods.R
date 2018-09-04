@@ -1,5 +1,6 @@
 #--------------------GETTERS-------------------
-#' @describeIn getVersion Get version of GAF file
+# Get version of GAF file
+#' @rdname gafreader_class
 #' @export
 setMethod(
   f = "getVersion",
@@ -9,7 +10,8 @@ setMethod(
   }
 )
 
-#' @describeIn getAnnotation Get annotation from GAF file
+# Get annotation from GAF file
+#' @rdname gafreader_class
 #' @export
 setMethod(
   f = "getAnnotation",
@@ -21,7 +23,7 @@ setMethod(
 
 #----------------------------------------------
 
-#' @describeIn read Read GAF file
+# Read GAF file
 setMethod(
   f = "read",
   signature = "GAFReader",
@@ -48,7 +50,8 @@ setMethod(
   }
 )
 
-#' @describeIn convertToList Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
+# Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
+#' @rdname gafreader_class
 #' @export
 setMethod(
   f = "convertToList",

@@ -30,13 +30,14 @@ setMethod(f = "plot",
 )
 
 
-#' Create rectangle plot coordinates for each Go term
-#'
-#' @param intervals - vector of intervals in character representation (e.g. "1-6")
-#'
-#' @return - matrix contains interval start coordinates in the first column and interval end coordinates
-#'           in the second row (note: the start coordinate is deducted by 1 in order to make the appropriate layout for rectangles)
-#'
+# Create rectangle plot coordinates for each Go term
+##############################PARAMS#########################################
+# intervals - vector of intervals in character representation (e.g. "1-6")
+#
+# return - matrix contains interval start coordinates in the first column and
+#          interval end coordinates in the second row (note: the start coordinate
+#         is deducted by 1 in order to make the appropriate layout for rectangles)
+#
 create_intervals_matrix <- function(intervals) {
   output_matrix <- matrix(integer(0), ncol = 2)
   # convert character representation of coordinates to numeric
@@ -62,18 +63,18 @@ create_intervals_matrix <- function(intervals) {
   return(output_matrix)
 }
 
-#' Data parser for fold-specificity rectangle plot
-#'
-#' Create input data for rectangle plot (fold_spec_chart function) using recognize_fs_terms function output as input
-#'
-#' @param fs_res_up - dataframe contains fold-specific GO terms and related data for up-regulation
-#' @param fs_res_down - dataframe contains fold-specific GO terms and related data for down-regulation
-#' @param nfs_res_up - dataframe contains not fold-specific GO terms and related data for up-regulation
-#' @param nfs_res_down - dataframe contains not fold-specific GO terms and related data for down-regulation
-#' @param wholeintname - name of the interval containing all differentially expressed genes
-#'
+#  Data parser for fold-specificity rectangle plot
+#
+#  Create input data for rectangle plot (fold_spec_chart function) using recognize_fs_terms function output as input
+######################################PARAMS#################################################################
+#  param fs_res_up - dataframe contains fold-specific GO terms and related data for up-regulation
+#  param fs_res_down - dataframe contains fold-specific GO terms and related data for down-regulation
+#  param nfs_res_up - dataframe contains not fold-specific GO terms and related data for up-regulation
+#  param nfs_res_down - dataframe contains not fold-specific GO terms and related data for down-regulation
+#  param wholeintname - name of the interval containing all differentially expressed genes
+#  input dataframe for create.fold.spec.chart function
 #' @importFrom tidyr spread
-#' @return input dataframe for create.fold.spec.chart function
+#'
 #'
 fold_spec_chart_data <-
   function(fs_res_up, fs_res_down, nfs_res_up, nfs_res_down, wholeintname) {
@@ -139,15 +140,15 @@ fold_spec_chart_data <-
 
 
 
-#' fold specificity rectangle plot
-#'
-#' Create rectangle plot for fold specificity data representation
-#'
-#' @param data dataframe contains GO term names and coordinates for rectangles both for up and down regulation
-#' @param interval_labels vector of user defined names for non-overlaping intervals (e.g. c("weak response",...,"strong response"))
-#' @param x_text_size size of text for x axis labels
-#'
-#' @return fold specificity rectangle plot as ggplot object
+# fold specificity rectangle plot
+#
+# Create rectangle plot for fold specificity data representation
+###################################PARAMS####################################################################################
+#  data dataframe contains GO term names and coordinates for rectangles both for up and down regulation
+#  param interval_labels vector of user defined names for non-overlaping intervals (e.g. c("weak response",...,"strong response"))
+#  param x_text_size size of text for x axis labels
+#
+# return fold specificity rectangle plot as ggplot object
 #' @importFrom ggplot2 ggplot geom_rect scale_x_continuous scale_y_continuous theme geom_hline geom_text coord_flip aes element_blank element_text
 #'
 fold_spec_chart <- function(data, interval_labels, x_text_size) {

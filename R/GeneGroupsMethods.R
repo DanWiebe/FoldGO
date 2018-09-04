@@ -1,6 +1,7 @@
 #--------------------GETTERS-------------------
-#' @describeIn getGroups Get list of gene sets for each
-#' quatile and all combinations
+# Get list of gene sets for each
+# quatile and all combinations
+#' @rdname genegroups_class
 #' @export
 setMethod(f = "getGroups",
           signature = "GeneGroups",
@@ -9,7 +10,8 @@ setMethod(f = "getGroups",
           }
 )
 
-#' @describeIn getQuanNumber Get number of quantiles
+# Get number of quantiles
+#' @rdname genegroups_class
 #' @export
 setMethod(f = "getQuanNumber",
           signature = "GeneGroups",
@@ -18,7 +20,8 @@ setMethod(f = "getQuanNumber",
           }
 )
 
-#' @describeIn getIntNames Get vector of intervals names
+# Get vector of intervals names
+#' @rdname genegroups_class
 #' @export
 setMethod(f = "getIntNames",
           signature = "GeneGroups",
@@ -27,8 +30,8 @@ setMethod(f = "getIntNames",
           }
 )
 
-#' @describeIn getWholeIntName Get name of the interval
-#' containing all differentially expressed genes
+# Get name of the interval containing all differentially expressed genes
+#' @rdname getWholeIntName
 #' @export
 setMethod(f = "getWholeIntName",
           signature = "GeneGroups",
@@ -37,7 +40,8 @@ setMethod(f = "getWholeIntName",
           }
 )
 
-#' @describeIn getRegType Get regulation type
+# Get regulation type
+#' @rdname genegroups_class
 #' @export
 setMethod(f = "getRegType",
           signature = "GeneGroups",
@@ -47,7 +51,7 @@ setMethod(f = "getRegType",
 )
 #----------------------------------------------
 
-#' @describeIn divToGroups Divide initial set of genes in to quantiles
+# Divide initial set of genes in to quantiles
 setMethod(f = "divToGroups",
           signature = "GeneGroups",
           definition = function(object){

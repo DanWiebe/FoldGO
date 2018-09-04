@@ -1,5 +1,6 @@
 #--------------------GETTERS-------------------
-#' @describeIn getResultList Accessor method for list of functional annotation result tables
+# Accessor method for list of functional annotation result tables
+#' @rdname fagroupstopgo_class
 #' @export
 setMethod(
   f = "getResultList",
@@ -9,7 +10,7 @@ setMethod(
   }
 )
 #----------------------------------------------
-#' @describeIn runFuncAnnotTest Functional annotation test
+# Functional annotation test
 setMethod(
   f = "runFuncAnnotTest",
   signature = "FuncAnnotGroupsTopGO",

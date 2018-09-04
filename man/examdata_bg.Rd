@@ -26,4 +26,8 @@ We used genes from two datasets in examples:
 the wild-type androgen receptor (AR-WT) or the ligand-independent AR-V7 splice variant (degenes_hum)
 }
 }
+\examples{
+# load background genes from A. thaliana RNA-seq experiment
+load(bggenes)
+}
 \keyword{datasets}
