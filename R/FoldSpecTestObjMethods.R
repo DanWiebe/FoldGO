@@ -1,7 +1,5 @@
 #--------------------GETTERS-------------------
 # Get dataframe with fold-change-specific terms
-#' @rdname foldspectest_class
-#' @export
 setMethod(f = "getFStable",
           signature = "FoldSpecTest",
           definition = function(object){
@@ -10,8 +8,6 @@ setMethod(f = "getFStable",
 )
 
 # Get dataframe with not fold-change-specific terms
-#' @rdname foldspectest_class
-#' @export
 setMethod(f = "getNFStable",
           signature = "FoldSpecTest",
           definition = function(object){
@@ -20,8 +16,6 @@ setMethod(f = "getNFStable",
 )
 # Get dataframe with both fold-change-specific
 # and not fold-change-specific terms
-#' @rdname foldspectest_class
-#' @export
 setMethod(f = "getResultTable",
           signature = "FoldSpecTest",
           definition = function(object){
@@ -30,8 +24,6 @@ setMethod(f = "getResultTable",
 )
 
 # Get name of largest fold-change interval (DEG interval)
-#' @rdname getWholeIntName
-#' @export
 setMethod(f = "getWholeIntName",
           signature = "FoldSpecTest",
           definition = function(object){

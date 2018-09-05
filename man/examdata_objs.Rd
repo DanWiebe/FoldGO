@@ -39,9 +39,9 @@ from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots}
 \examples{
 # load GeneGroups object with up-regulated genes from rna-seq experiment on auxin treatment
 # of Arabidopsis thaliana roots
-load(up_groups)
+data("up_groups")
 # load FuncAnnotGroups object compiled from lists of up-regulated genes
 # from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots
-load(up_annotobj)
+data("up_annotobj")
 }
 \keyword{datasets}

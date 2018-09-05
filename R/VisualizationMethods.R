@@ -73,9 +73,6 @@ create_intervals_matrix <- function(intervals) {
 #  param nfs_res_down - dataframe contains not fold-specific GO terms and related data for down-regulation
 #  param wholeintname - name of the interval containing all differentially expressed genes
 #  input dataframe for create.fold.spec.chart function
-#' @importFrom tidyr spread
-#'
-#'
 fold_spec_chart_data <-
   function(fs_res_up, fs_res_down, nfs_res_up, nfs_res_down, wholeintname) {
 
@@ -149,8 +146,6 @@ fold_spec_chart_data <-
 #  param x_text_size size of text for x axis labels
 #
 # return fold specificity rectangle plot as ggplot object
-#' @importFrom ggplot2 ggplot geom_rect scale_x_continuous scale_y_continuous theme geom_hline geom_text coord_flip aes element_blank element_text
-#'
 fold_spec_chart <- function(data, interval_labels, x_text_size) {
 
   if (!requireNamespace("ggplot2", quietly = TRUE)) {

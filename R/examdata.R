@@ -13,7 +13,7 @@
 #' }
 #' @examples
 #' # load background genes from A. thaliana RNA-seq experiment
-#' load(bggenes)
+#' data("bggenes")
 #' @format A vector containing the GeneIDs with 18039 and 38238 for A. thaliana and H. sapiens correspondingly
 #' @name examdata_bg
 NULL
@@ -35,10 +35,10 @@ NULL
 #' @examples
 #' # load GeneGroups object with up-regulated genes from rna-seq experiment on auxin treatment
 #' # of Arabidopsis thaliana roots
-#' load(up_groups)
+#' data("up_groups")
 #' # load FuncAnnotGroups object compiled from lists of up-regulated genes
 #' # from rna-seq experiment on auxin treatment of Arabidopsis thaliana roots
-#' load(up_annotobj)
+#' data("up_annotobj")
 #' @format
 #' \describe{
 #' \item{up_groups}{object of GeneGroups class}
@@ -65,7 +65,7 @@ NULL
 #' }
 #' @examples
 #' # load degenes from RNA-seq experiment on auxin treatment of Arabidopsis thaliana roots
-#' load(degenes)
+#' data("degenes")
 #' @format A dataframes with 4 variables and 789 and 2079 for A. thaliana and H. sapiens correspondingly,
 #' where colnames are:
 #' \describe{

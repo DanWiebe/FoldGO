@@ -28,6 +28,6 @@ the wild-type androgen receptor (AR-WT) or the ligand-independent AR-V7 splice v
 }
 \examples{
 # load background genes from A. thaliana RNA-seq experiment
-load(bggenes)
+data("bggenes")
 }
 \keyword{datasets}
