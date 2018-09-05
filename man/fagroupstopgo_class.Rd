@@ -2,6 +2,7 @@
 \name{fagroupstopgo_class}
 \alias{fagroupstopgo_class}
 \alias{FuncAnnotGroupsTopGO}
+\alias{getResultList}
 \alias{getResultList,FuncAnnotGroups-method}
 \title{S4 class for FuncAnnotGroupsTopGO object}
 \description{
