@@ -26,7 +26,7 @@ annotations as list GO term id's as keys and Gene ID's as values and version of 
 In the code examples below \code{object} is an object of GAFReader class
 \describe{
 \item{}{\code{getVersion(object)} - returns version of GAF file}
-\item{}{\code{getAnnotation(object)} - returns annotation from GAF file}
+\item{}{\code{getAnnotation(object)} - returns annotation from GAF file in form of GO ids - Gene ids list}
 }
 }
 
@@ -41,15 +41,12 @@ contains GO term id's as keys and Gene ID's as values}
 
 \examples{
 # read .gaf file (in this example gaf file with annotation for \\emph{A.thaliana} is used)
+# object returned by \\code{\\link{GAFReader}} can be used by \\code{\\link{FuncAnnotGroupsTopGO}} function.
 gaf_path <- system.file("extdata", "gene_association.tair.lzma",
                          package = "FoldGO", mustWork = TRUE)
 gaf <- GAFReader(file = gaf_path, geneid_col = 10)
 # get version of file
 getVersion(gaf)
-# get annotations in tabular format
-getAnnotation(gaf)
 # get annoitation in the list format contains GO term id's as keys and Gene ID's as values
-# which can be used by \\code{\\link{FuncAnnotGroupsTopGO}} function.
-#
-convertToList(gaf)
+getAnnotation(gaf)
 }

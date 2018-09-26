@@ -72,7 +72,7 @@ For custom annotation one has to provide GO id -> Gene id list. One of the commo
 NOTE: The GAF file in example is truncated. The original full file can be downloaded from GO consortium website: <http://www.geneontology.org/page/download-go-annotations>.
 
 ```{r gafread, warning = FALSE, message = FALSE}
-gaf_path <- system.file("extdata", "gene_association.tair.lzma", package = "FoldGO")
+gaf_path <- system.file("inst/extdata", "gene_association.tair.lzma", package = "FoldGO")
 gaf <- GAFReader(file = gaf_path,  geneid_col = 10)
 ```
 

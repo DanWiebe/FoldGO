@@ -13,7 +13,8 @@ setMethod(
   f = "getAnnotation",
   signature = "AnnotationReader",
   definition = function(object) {
-    return(object@annotation)
+    annot <- convertToList(object)
+    return(annot)
   }
 )
 

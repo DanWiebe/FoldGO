@@ -97,7 +97,7 @@ setClass(
     algorithm = "classic",
     statistic = "fisher",
     annot = topGO::annFUN,
-    GO2genes = list(0),
+    GO2genes = list(),
     mapping = "custom",
     ID = character(0)
   ),
@@ -106,6 +106,11 @@ setClass(
     if (!object@namespace %in% c("BP", "MF", "CC")) {
       return("Unknown namespace. Choose one of the following: MF, CC, BP")
     }
+
+    if (object@mapping == "custom" && length(object@GO2genes) == 0) {
+      return("Object or list with GOID - geneID annotatons is not provided!")
+    }
+
     return(TRUE)
   },
 
@@ -114,7 +119,7 @@ setClass(
 )
 
 # Constructor for FuncAnnotGroupsTopGO S4 class
-FuncAnnotGroupsTopGO <- function(genegroups, namespace, ...) {
+FuncAnnotGroupsTopGO <- function(genegroups, namespace, customAnnot = NULL, ...) {
 
   if (!requireNamespace("topGO", quietly = TRUE)) {
     stop("topGO package needed for this function to work. Please install it.",
@@ -127,6 +132,10 @@ FuncAnnotGroupsTopGO <- function(genegroups, namespace, ...) {
     namespace = namespace,
     ...
   )
+
+  if (obj@mapping == "custom") {
+    obj@GO2genes <- getAnnotation(customAnnot)
+  }
 
   obj@wholeintname <- getWholeIntName(genegroups)
 
