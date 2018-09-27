@@ -2,6 +2,14 @@
 \name{genegroups_class}
 \alias{genegroups_class}
 \alias{GeneGroups}
+\alias{getGroups}
+\alias{getIntNames}
+\alias{getQuanNumber}
+\alias{getRegType}
+\alias{getGroups,GeneGroups-method}
+\alias{getIntNames,GeneGroups-method}
+\alias{getQuanNumber,GeneGroups-method}
+\alias{getRegType,GeneGroups-method}
 \title{S4 class for Gene Groups}
 \description{
 This function splits gene list into quantiles and generates all unions of neighbouring quantiles.

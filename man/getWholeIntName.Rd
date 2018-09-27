@@ -21,5 +21,5 @@ fs_up <- FoldSpecTest(up_annotobj)
 getWholeIntName(fs_up)
 }
 \seealso{
-\code{\link{FoldSpecTest()}} \code{\link{GeneGroups()}}
+\code{\link{FoldSpecTest}} \code{\link{GeneGroups}}
 }

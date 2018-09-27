@@ -2,6 +2,9 @@
 \name{foldspectest_class}
 \alias{foldspectest_class}
 \alias{FoldSpecTest}
+\alias{getFStable}
+\alias{getNFStable}
+\alias{getResultTable}
 \alias{getFStable,FoldSpecTest-method}
 \alias{getNFStable,FoldSpecTest-method}
 \alias{getResultTable,FoldSpecTest-method}

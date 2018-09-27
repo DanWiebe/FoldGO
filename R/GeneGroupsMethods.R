@@ -1,6 +1,8 @@
 #--------------------GETTERS-------------------
 # Get list of gene sets for each
 # quatile and all combinations
+#' @rdname genegroups_class
+#' @export
 setMethod(f = "getGroups",
           signature = "GeneGroups",
           definition = function(object){
@@ -9,6 +11,8 @@ setMethod(f = "getGroups",
 )
 
 # Get number of quantiles
+#' @rdname genegroups_class
+#' @export
 setMethod(f = "getQuanNumber",
           signature = "GeneGroups",
           definition = function(object){
@@ -17,6 +21,8 @@ setMethod(f = "getQuanNumber",
 )
 
 # Get vector of intervals names
+#' @rdname genegroups_class
+#' @export
 setMethod(f = "getIntNames",
           signature = "GeneGroups",
           definition = function(object){
@@ -25,6 +31,8 @@ setMethod(f = "getIntNames",
 )
 
 # Get name of the interval containing all differentially expressed genes
+#' @rdname getWholeIntName
+#' @export
 setMethod(f = "getWholeIntName",
           signature = "GeneGroups",
           definition = function(object){
@@ -33,6 +41,8 @@ setMethod(f = "getWholeIntName",
 )
 
 # Get regulation type
+#' @rdname genegroups_class
+#' @export
 setMethod(f = "getRegType",
           signature = "GeneGroups",
           definition = function(object){
@@ -97,7 +107,7 @@ setMethod(f = "divToGroups",
             object@intnames <- names(intervals)
             object@wholeintname <- paste("1", n, sep = "-")
             return(object)
-}
+          }
 )
 
 setMethod("show", "GeneGroups",

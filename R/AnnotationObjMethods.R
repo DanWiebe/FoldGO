@@ -1,5 +1,7 @@
 #--------------------GETTERS-------------------
 # Accessor method for list of functional annotation result tables
+#' @rdname fagroupstopgo_class
+#' @export
 setMethod(
   f = "getResultList",
   signature = "FuncAnnotGroups",

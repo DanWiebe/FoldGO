@@ -6,7 +6,7 @@ Author: Daniil Wiebe <daniil.wiebe@gmail.com> [aut, cre]
 Maintainer: Daniil Wiebe <daniil.wiebe@gmail.com>
 Description: FoldGO is a package designed to annotate gene sets derived from 
     expression experiments and identify fold-change-specific GO terms.
-Depends: R (>= 3.4)
+Depends: R (>= 3.5)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

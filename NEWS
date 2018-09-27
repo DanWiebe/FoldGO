@@ -1,3 +1,10 @@
+Changes in version 0.99.9 (2018-09-5)
++ Documentation update
+-------------------------------------------------
+Changes in version 0.99.8 (2018-09-5)
++ Man pages list shortened to 10 pages
++ Documentation update
+-------------------------------------------------
 Changes in version 0.99.7 (2018-07-19)
 + Argument specifying column with Gene IDs added to GAFReader class
 + Example gaf file truncated (don't use it for real analysis!)

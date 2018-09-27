@@ -2,6 +2,9 @@
 \name{gafreader_class}
 \alias{gafreader_class}
 \alias{GAFReader}
+\alias{getVersion}
+\alias{getAnnotation}
+\alias{convertToList}
 \alias{getVersion,GAFReader-method}
 \alias{getAnnotation,AnnotationReader-method}
 \alias{convertToList,GAFReader-method}
