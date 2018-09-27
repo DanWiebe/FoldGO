@@ -3,6 +3,8 @@
 # which it takes as input in the case when annotation
 # already presented as s GO iD - gene ID annotation list
 #######################################################
+#' @rdname getAnnotation
+#' @export
 setMethod(f = "getAnnotation",
           signature = "list",
           definition = function(object){
@@ -14,6 +16,8 @@ setMethod(f = "getAnnotation",
 # Accessor method for MgsaSets sets slot which contains
 # GO iD - gene ID annotation list
 #######################################################
+#' @rdname getAnnotation
+#' @export
 setMethod(f = "getAnnotation",
           signature = "MgsaSets",
           definition = function(object){
@@ -24,6 +28,8 @@ setMethod(f = "getAnnotation",
 #######################################################
 # If no custom annotation passed
 #######################################################
+#' @rdname getAnnotation
+#' @export
 setMethod(f = "getAnnotation",
           signature = "NULL" ,
           definition = function(object){

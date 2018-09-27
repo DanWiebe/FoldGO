@@ -11,7 +11,7 @@ setMethod(
 )
 
 # Get annotation from GAF file
-#' @rdname gafreader_class
+#' @rdname getAnnotation
 #' @export
 setMethod(
   f = "getAnnotation",
@@ -52,8 +52,6 @@ setMethod(
 )
 
 # Convert GAF format type annotation to list contains GO term id's as keys and Gene ID's as values
-#' @rdname gafreader_class
-#' @export
 setMethod(
   f = "convertToList",
   signature = "GAFReader",

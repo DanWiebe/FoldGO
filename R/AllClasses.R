@@ -107,9 +107,9 @@ setClass(
       return("Unknown namespace. Choose one of the following: MF, CC, BP")
     }
 
-    if (object@mapping == "custom" && length(object@GO2genes) == 0) {
-      return("Object or list with GOID - geneID annotatons is not provided!")
-    }
+   # if (object@mapping == "custom" && length(object@GO2genes) == 0) {
+  #    return("Object or list with GOID - geneID annotatons is not provided!")
+   # }
 
     return(TRUE)
   },

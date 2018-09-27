@@ -23,6 +23,7 @@ setGeneric(name = "getVersion",
              standardGeneric("getVersion")
            }
 )
+
 # Get annotation derived from annotation file
 setGeneric(name = "getAnnotation",
            def = function(object){

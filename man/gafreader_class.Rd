@@ -3,11 +3,8 @@
 \alias{gafreader_class}
 \alias{GAFReader}
 \alias{getVersion}
-\alias{getAnnotation}
 \alias{convertToList}
 \alias{getVersion,GAFReader-method}
-\alias{getAnnotation,AnnotationReader-method}
-\alias{convertToList,GAFReader-method}
 \title{S4 class for GAFReader object}
 \description{
 Parser for annotation presented in GAF file format (.gaf).
@@ -37,14 +34,15 @@ In the code examples below \code{object} is an object of GAFReader class
 
 In the code examples below \code{object} is an object of GAFReader class
 \describe{
-\item{}{\code{convertToList(object)} - Convert GAF format type annotation to list
+\item{}{\code{getAnnotation(object)} - Convert annotation to list
 contains GO term id's as keys and Gene ID's as values}
 }
 }
 
 \examples{
 # read .gaf file (in this example gaf file with annotation for \\emph{A.thaliana} is used)
-# object returned by \\code{\\link{GAFReader}} can be used by \\code{\\link{FuncAnnotGroupsTopGO}} function.
+# object returned by \\code{\\link{GAFReader}} can be used by
+# \\code{\\link{FuncAnnotGroupsTopGO}} function.
 gaf_path <- system.file("extdata", "gene_association.tair.lzma",
                          package = "FoldGO", mustWork = TRUE)
 gaf <- GAFReader(file = gaf_path, geneid_col = 10)

@@ -1,7 +1,7 @@
 Package: FoldGO
 Type: Package
 Title: Package for Fold-specific GO Terms Recognition
-Version: 0.99.9
+Version: 0.99.10
 Author: Daniil Wiebe <daniil.wiebe@gmail.com> [aut, cre]
 Maintainer: Daniil Wiebe <daniil.wiebe@gmail.com>
 Description: FoldGO is a package designed to annotate gene sets derived from 

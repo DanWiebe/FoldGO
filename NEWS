@@ -1,3 +1,6 @@
+Changes in version 0.99.10 (2018-09-27)
++ Support for MgsaSets object (mgsa package) added
+-------------------------------------------------
 Changes in version 0.99.9 (2018-09-5)
 + Documentation update
 -------------------------------------------------
