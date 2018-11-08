@@ -63,11 +63,11 @@ setMethod(
     data_table$classicFisher <- sub("<\\s", "",
                                     data_table$classicFisher)
 
-    data_table$padj <- p.adjust(data_table$classicFisher, method = padjmethod)
     data_table$qtot <- topGO::numSigGenes(GOdata)
     data_table$namespace <- topGO::ontology(GOdata)
     data_table <-
       data_table[data_table$Significant >= qitborder, ]
+    data_table$padj <- p.adjust(data_table$classicFisher, method = padjmethod)
     colnames(data_table) <-
       c(
         "GO_id",
@@ -76,9 +76,9 @@ setMethod(
         "qit",
         "Expected",
         "pvalue",
-        "padj",
         "qtot",
-        "namespace"
+        "namespace",
+        "padj"
       )
     result_list[[quan_names[1]]] <- data_table
 
@@ -100,11 +100,11 @@ setMethod(
       data_table$classicFisher <- sub("<\\s", "",
                                       data_table$classicFisher)
 
-      data_table$padj <- p.adjust(data_table$classicFisher, method = padjmethod)
       data_table$qtot <- topGO::numSigGenes(GOdata)
       data_table$namespace <- topGO::ontology(GOdata)
       data_table <-
         data_table[data_table$Significant >= qitborder, ]
+      data_table$padj <- p.adjust(data_table$classicFisher, method = padjmethod)
       colnames(data_table) <-
         c(
           "GO_id",
@@ -113,9 +113,9 @@ setMethod(
           "qit",
           "Expected",
           "pvalue",
-          "padj",
           "qtot",
-          "namespace"
+          "namespace",
+          "padj"
         )
       result_list[[quan_name]] <- data_table
 
