@@ -1,3 +1,9 @@
+Changes in version 1.1.1 (2018-11-9)
++ Bug with p-value correction before filtering fixed
+-------------------------------------------------
+Changes in version 1.1.0 (2018-10-31)
++ First release
+-------------------------------------------------
 Changes in version 0.99.10 (2018-09-27)
 + Support for MgsaSets object (mgsa package) added
 -------------------------------------------------
