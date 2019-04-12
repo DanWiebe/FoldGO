@@ -107,6 +107,12 @@ setClass(
       return("Unknown namespace. Choose one of the following: MF, CC, BP")
     }
 
+    if (length(object@bggenes) == 0) {
+      return("Background genes vector is empty, please pass background genes
+             set (gene universe from RNA-seq experiment or all genes from annotation)
+             as bggenes parameter")
+    }
+
    # if (object@mapping == "custom" && length(object@GO2genes) == 0) {
   #    return("Object or list with GOID - geneID annotatons is not provided!")
    # }

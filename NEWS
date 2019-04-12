@@ -1,3 +1,6 @@
+Changes in version 1.1.2 (2019-04-12)
++ Bug with missing set of background genes fixed
+-------------------------------------------------
 Changes in version 1.1.1 (2018-11-9)
 + Bug with p-value correction before filtering fixed
 -------------------------------------------------
