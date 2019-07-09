@@ -1,3 +1,6 @@
+Changes in version 1.2.1 (2019-07-9)
++ Bug with wrong arguments order in plotting functions fixed
+-------------------------------------------------
 Changes in version 1.1.2 (2019-04-12)
 + Bug with missing set of background genes fixed
 -------------------------------------------------
