@@ -21,8 +21,8 @@ setMethod(f = "plot",
             borders <- unlist(strsplit(wholeintname, "-", fixed = TRUE))
             x_labs <- seq(borders[1], borders[2])
             fs_data <- fold_spec_chart_data(up_obj@fstable,
-                                            up_obj@nfstable,
                                             down_obj@fstable,
+                                            up_obj@nfstable,
                                             down_obj@nfstable,
                                             wholeintname)
             plot(fold_spec_chart(fs_data, x_labs, x_text_size = x_text_size))
