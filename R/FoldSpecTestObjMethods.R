@@ -174,7 +174,7 @@ setMethod(f = "calcFSsignificance",
             # and separate GO terms into fold-specific and not fold-specific groups
             # using fdr step 2 threshold
             padj <- stats::p.adjust(minp[1, ], method = p_adjust_method,
-                                    n = sum(2:as.numeric(sub("^1-", "", wholeintname))) * length(minp))
+                                    n = sum(2:as.numeric(sub("^1-", "", wholeintname))) * length(minp[1, ]))
 
             wi_pvaldf <- wi_pvaldf[match(go_ids, wi_pvaldf$GO_id), ]
 
