@@ -81,14 +81,14 @@ fold_spec_chart_data <-
            call. = FALSE)
     }
 
-    nfs_res_up$interval <- wholeintname
-    nfs_res_down$interval <- wholeintname
+    #nfs_res_up$interval <- wholeintname
+    #nfs_res_down$interval <- wholeintname
 
-    nfs_res_up <- nfs_res_up[nfs_res_up$ids %in% fs_res_down$ids, ]
-    nfs_res_down <- nfs_res_down[nfs_res_down$ids %in% fs_res_up$ids, ]
+    #nfs_res_up <- nfs_res_up[nfs_res_up$ids %in% fs_res_down$ids, ]
+    #nfs_res_down <- nfs_res_down[nfs_res_down$ids %in% fs_res_up$ids, ]
 
-    fs_res_up <- rbind(fs_res_up, nfs_res_up)
-    fs_res_down <- rbind(fs_res_down, nfs_res_down)
+    #fs_res_up <- rbind(fs_res_up, nfs_res_up)
+    #fs_res_down <- rbind(fs_res_down, nfs_res_down)
 
     # add column with regulation type
     fs_res_up$reg <- rep("up", length(fs_res_up[, 1]))
