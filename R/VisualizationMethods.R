@@ -14,18 +14,23 @@
 #' plot(up_fs, down_fs)
 setMethod(f = "plot",
           signature = "FoldSpecTest",
-          definition = function(x, y, x_text_size = 10){
+          definition = function(x, y, x_labs = NULL, x_text_size = 10){
             up_obj <- x
             down_obj <- y
             wholeintname <- getWholeIntName(up_obj)
             borders <- unlist(strsplit(wholeintname, "-", fixed = TRUE))
-            x_labs <- seq(borders[1], borders[2])
+            if (is.null(x_labs)) {
+              x_labs <- seq(borders[1], borders[2])
+            }
             fs_data <- fold_spec_chart_data(up_obj@fstable,
                                             down_obj@fstable,
                                             up_obj@nfstable,
                                             down_obj@nfstable,
                                             wholeintname)
-            plot(fold_spec_chart(fs_data, x_labs, x_text_size = x_text_size))
+            fs_chart <- fold_spec_chart(fs_data, x_labs, x_text_size = x_text_size)
+            leg_chart <- legend_plot(as.numeric(sub("1-", "", wholeintname)))
+            p <- gridExtra::grid.arrange(leg_chart, fs_chart, heights = c(1,5))
+            plot(p)
           }
 )
 
@@ -211,4 +216,109 @@ fold_spec_chart <- function(data, interval_labels, x_text_size) {
                size = 0.2) +
     geom_text(y = 0, aes(label = labels)) +
     coord_flip()
+}
+
+# Fold quantiles legend plot
+#
+# param n - number of quantiles
+#
+# return - ggplot2 object
+legend_plot <- function(n) {
+  if (n < 11) {
+    num_labs <- seq(0.5, n - 0.5, 1)
+    p <- ggplot() + geom_polygon(
+      data = data.frame(x = c(0, n, n),
+                        y = c(0, 0, 1)),
+      mapping = aes(x = x, y = y),
+      fill = "yellow2",
+      alpha = 0.8
+    ) +
+      geom_polygon(
+        data = data.frame(x = c(0, -n, -n),
+                          y = c(0, 0, 1)),
+        mapping = aes(x = x, y = y),
+        fill = "skyblue2",
+        alpha = 0.8
+      ) +
+      geom_vline(xintercept = c(-n:n),
+                 linetype = "dashed",
+                 size = 0.2) +
+      geom_text(x = c(-n, 0, n), y = -0.01,
+                aes(label = c("strongest", "weakest", "strongest"))) +
+      geom_text(
+        x = c(-num_labs, num_labs),
+        y = 0.55,
+        aes(label = as.character(c(1:n, 1:n))),
+        size = 5
+      ) +
+      geom_label(x = c(-n / 2, n / 2), y = 0.25,
+                 aes(label = c("down regulation", "up regulation"))) +
+      geom_text(x = 0,
+                y = 0.75,
+                aes(label = "Quantiles"),
+                size = 7) +
+      theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks = element_blank()
+      )
+    return(p)
+  } else {
+    num_labs <- c(seq(0.5, 2.5, 1), seq(7.5, 9.5, 1))
+    p <- ggplot() + geom_polygon(
+      data = data.frame(x = c(0, 10, 10),
+                        y = c(0, 0, 1)),
+      mapping = aes(x = x, y = y),
+      fill = "yellow2",
+      alpha = 0.8
+    ) +
+      geom_polygon(
+        data = data.frame(x = c(0, -10, -10),
+                          y = c(0, 0, 1)),
+        mapping = aes(x = x, y = y),
+        fill = "skyblue2",
+        alpha = 0.8
+      ) +
+      geom_vline(xintercept = c(-10:-7, -3:3, 7:10),
+                 linetype = "dashed",
+                 size = 0.2) +
+      geom_text(x = c(-10, 0, 10), y = -0.01,
+                aes(label = c("strongest", "weakest", "strongest"))) +
+      geom_text(
+        x = c(-num_labs, num_labs),
+        y = 0.55,
+        aes(label = as.character(c(1:3, (n-2):n, 1:3, (n-2):n))),
+        size = 5
+      ) +
+      geom_label(x = c(-5, 5), y = 0.25,
+                 aes(label = c("down regulation", "up regulation"))) +
+      geom_text(x = 0,
+                y = 0.75,
+                aes(label = "Quantiles"),
+                size = 7) +
+      geom_text(x = -5,
+                y = 0.55,
+                aes(label = "..."),
+                size = 7) +
+      geom_text(x = 5,
+                y = 0.55,
+                aes(label = "..."),
+                size = 7) +
+      theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks = element_blank()
+      )
+    return(p)
+  }
 }

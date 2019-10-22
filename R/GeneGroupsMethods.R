@@ -106,6 +106,7 @@ setMethod(f = "divToGroups",
             object@groups <- intervals
             object@intnames <- names(intervals)
             object@wholeintname <- paste("1", n, sep = "-")
+            object@borders <- borders
             return(object)
           }
 )
