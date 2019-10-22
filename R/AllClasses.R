@@ -12,7 +12,8 @@ setClass(
     groups = "list",
     intnames = "character",
     wholeintname = "character",
-    regtype = "character"
+    regtype = "character",
+    borders = "numeric"
   ),
 
   prototype = list(
