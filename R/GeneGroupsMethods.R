@@ -49,6 +49,13 @@ setMethod(f = "getRegType",
             return(object@regtype)
           }
 )
+# Get fold borders
+setMethod(f = "getFoldBorders",
+          signature = "GeneGroups",
+          definition = function(object){
+            return(object@fold_borders)
+          }
+)
 #----------------------------------------------
 
 # Divide initial set of genes in to quantiles

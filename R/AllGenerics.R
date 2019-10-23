@@ -111,6 +111,12 @@ setGeneric(name = "getRegType",
              standardGeneric("getRegType")
            }
 )
+# Get fold borders
+setGeneric(name = "getFoldBorders",
+           def = function(object){
+             standardGeneric("getFoldBorders")
+           }
+)
 #----------------------------------------------
 # Divide initial set of genes in to quantiles
 setGeneric(name = "divToGroups",
