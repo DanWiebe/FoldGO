@@ -13,7 +13,7 @@ setClass(
     intnames = "character",
     wholeintname = "character",
     regtype = "character",
-    borders = "numeric"
+    fold_borders = "numeric"
   ),
 
   prototype = list(
@@ -56,7 +56,8 @@ setClass(
     resultlist = "list",
     padjmethod = "character",
     qitborder = "numeric",
-    wholeintname = "character"
+    wholeintname = "character",
+    fold_borders = "numeric"
   ),
 
   validity = function(object) {
@@ -145,6 +146,7 @@ FuncAnnotGroupsTopGO <- function(genegroups, namespace, customAnnot = NULL, ...)
   }
 
   obj@wholeintname <- getWholeIntName(genegroups)
+  obj@fold_borders <- getFoldBorders(genegroups)
 
   obj <- runFuncAnnotTest(obj)
   return(obj)
@@ -215,7 +217,8 @@ setClass(
     padjmethod = "character",
     fdrstep1 = "numeric",
     fdrstep2 = "numeric",
-    fisher_alternative = "character"
+    fisher_alternative = "character",
+    fold_borders = "numeric"
   ),
 
   validity = function(object){
@@ -256,5 +259,6 @@ FoldSpecTest <- function(annotgroups, ...) {
   )
   obj <- calcFSsignificance(obj)
   obj <- findFSterms(obj)
+  obj@fold_borders <- annotgroups@fold_borders
   return(obj)
 }
