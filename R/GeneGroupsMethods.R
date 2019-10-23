@@ -86,6 +86,7 @@ setMethod(f = "divToGroups",
               }
               singleintervals[[toString(n)]] <-
                 genes[folds <= borders[length(borders)]]
+              borders <- c(borders, min(folds))
             } else {
               stop(
                 "input data contains both up and down regulated genes, please analyze them separately",
@@ -106,7 +107,8 @@ setMethod(f = "divToGroups",
             object@groups <- intervals
             object@intnames <- names(intervals)
             object@wholeintname <- paste("1", n, sep = "-")
-            object@borders <- borders
+            names(borders)[1] <- "0%"
+            object@fold_borders <- borders
             return(object)
           }
 )
