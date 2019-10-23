@@ -14,22 +14,23 @@
 #' plot(up_fs, down_fs)
 setMethod(f = "plot",
           signature = "FoldSpecTest",
-          definition = function(x, y, x_labs = NULL, x_text_size = 10){
+          definition = function(x, y, x_text_size = 10, legend_ratio = c(1,5)){
             up_obj <- x
             down_obj <- y
             wholeintname <- getWholeIntName(up_obj)
-            borders <- unlist(strsplit(wholeintname, "-", fixed = TRUE))
-            if (is.null(x_labs)) {
-              x_labs <- seq(borders[1], borders[2])
-            }
+            #borders <- unlist(strsplit(wholeintname, "-", fixed = TRUE))
+            #if (is.null(x_labs)) {
+            #  x_labs <- seq(borders[1], borders[2])
+            #}
             fs_data <- fold_spec_chart_data(up_obj@fstable,
                                             down_obj@fstable,
                                             up_obj@nfstable,
                                             down_obj@nfstable,
                                             wholeintname)
-            fs_chart <- fold_spec_chart(fs_data, x_labs, x_text_size = x_text_size)
+            fs_chart <- fold_spec_chart(fs_data, up_obj@fold_borders,
+                                        down_obj@fold_borders, x_text_size = x_text_size)
             leg_chart <- legend_plot(as.numeric(sub("1-", "", wholeintname)))
-            p <- gridExtra::grid.arrange(leg_chart, fs_chart, heights = c(1,5))
+            p <- gridExtra::grid.arrange(leg_chart, fs_chart, heights = legend_ratio)
             plot(p)
           }
 )
@@ -151,13 +152,15 @@ fold_spec_chart_data <-
 #  param x_text_size size of text for x axis labels
 #
 # return fold specificity rectangle plot as ggplot object
-fold_spec_chart <- function(data, interval_labels, x_text_size) {
+fold_spec_chart <- function(data, up_borders, down_borders, x_text_size = 10) {
 
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
     stop("ggplot2 package needed for this function to work. Please install it.",
          call. = FALSE)
   }
-
+  up_borders <- formatC(up_borders[-1], digits = 3)
+  down_borders <- formatC(down_borders[-1], digits = 3)
+  interval_labels <- c(rev(down_borders), "0.00", up_borders)
   # extract y-axis labels
   labels <- as.vector(data[, 1])
   # extract reactangle plot coordinates
@@ -165,10 +168,14 @@ fold_spec_chart <- function(data, interval_labels, x_text_size) {
   # create vector of x - axis coordinates
   labs <- c(1:length(data[, 1]))
   # create palindromic vector of y labels
-  ylabs <- c(rev(interval_labels), interval_labels)
-  limit <- length(interval_labels)
-  breaks_limit <- limit - 0.5
+  #ylabs <- interval_labels
+  limit <- (length(interval_labels) - 1)/2
+  breaks_limit <- limit
   p_up <- ggplot(df, aes(x = labs)) +
+    geom_hline(yintercept = c(c(-limit:-1), c(1:limit)),
+               linetype = "solid",
+               colour = "white",
+               size = 0.2) +
     geom_rect(
       aes(
         x = labs,
@@ -195,8 +202,8 @@ fold_spec_chart <- function(data, interval_labels, x_text_size) {
     scale_y_continuous(
       breaks = seq(-breaks_limit, breaks_limit, 1),
       limits = c(-limit, limit),
-      labels = ylabs,
-      minor_breaks = seq(-limit, limit, 0.5)
+      labels = interval_labels,
+      minor_breaks = NULL
     ) +
     theme(
       panel.grid.major.x = element_blank(),
@@ -214,8 +221,9 @@ fold_spec_chart <- function(data, interval_labels, x_text_size) {
     geom_hline(yintercept = 0,
                linetype = "dashed",
                size = 0.2) +
+
     geom_text(y = 0, aes(label = labels)) +
-    coord_flip()
+    coord_flip() + labs(y = "Log fold change")
 }
 
 # Fold quantiles legend plot
