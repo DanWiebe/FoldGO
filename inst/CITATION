@@ -1,0 +1,27 @@
+citHeader("To cite FoldGO in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Fold-Change-Specific Enrichment Analysis (FSEA): Quantification of Transcriptional Response Magnitude for Functional Gene Groups",
+  author       = personList(as.person("Daniil S. Wiebe"),
+                            as.person("Nadezhda A. Omelyanchuk"),
+                            as.person("Aleksei M. Mukhin"),
+                            as.person("Ivo Grosse"),
+                            as.person("Sergey A. Lashin"),
+                            as.person("Elena V. Zemlyanskaya"),
+                            as.person("Victoria V. Mironova")
+                            ),
+  journal      = "Genes",
+  year         = "2020",
+  volume       = "11",
+  number       = "4",
+  pages        = "434",
+  doi          = "10.3390/genes11040434",
+  url          = "https://doi.org/10.3390/genes11040434",
+
+  textVersion  =
+  paste("Daniil S. Wiebe, Nadezhda A. Omelyanchuk, Aleksei M. Mukhin, Ivo Grosse,",
+        "Sergey A. Lashin, Elena V. Zemlyanskaya, Victoria V. Mironova.",
+        "Fold-Change-Specific Enrichment Analysis (FSEA): Quantification of Transcriptional Response Magnitude for Functional Gene Groups",
+        "Genes, 11:4, 434.",
+        "URL https://www.mdpi.com/2073-4425/11/4/434")
+)
